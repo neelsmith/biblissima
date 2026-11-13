@@ -70,3 +70,4 @@ Files touched: notes/01-data-sources.md, notes/02-plan.md, notes/session-log.md 
   (P366 conditions URL, P200 operator, P187 licence). Wrote 09-rights-findings.md. Next: discovery on digital library items, ExternalUri.source, portal->QID records.
 - Implemented rights lookup (Wikibase P196[P191] -> digital library: operator, licence, conditions URL); refactored client (HttpClient, shared Throttle, WikibaseClient);
   new modules rights.py, harvest.py; CLI --no-rights. 42 tests pass under the stdlib shim. Not run live. Next: user runs `uv run pytest`, then `biblissima mss --limit 20` and inspects rights columns.
+- CLI progress line now every 100 records (was 1000).

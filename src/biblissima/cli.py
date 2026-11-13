@@ -83,7 +83,7 @@ def _run_mss(args: argparse.Namespace) -> int:
             ),
             1,
         ):
-            if i % 1000 == 0:
+            if i % 100 == 0:
                 print(f"  {i} records", file=sys.stderr)
             yield rec
 
