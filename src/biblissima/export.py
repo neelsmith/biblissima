@@ -5,7 +5,7 @@ from __future__ import annotations
 import csv
 import re
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, Sequence
 
 from .manifests import ManifestRecord
 
@@ -26,11 +26,13 @@ def sanitize(value: str) -> str:
     return _WHITESPACE.sub(" ", value or "").strip()
 
 
-def write_mss_cex(records: Iterable[ManifestRecord], path: Path | str) -> int:
-    """Write ``records`` to ``path`` as a pipe-delimited file; return the row count.
+def write_cex(
+    path: Path | str, header: Sequence[str], rows: Iterable[Sequence[str]]
+) -> int:
+    """Write rows to ``path`` as a pipe-delimited file; return the row count.
 
     The file is written to a temporary name and renamed on success, so an
-    interrupted run never leaves a half-written ``mss.cex``.
+    interrupted run never leaves a half-written file.
     """
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -40,17 +42,21 @@ def write_mss_cex(records: Iterable[ManifestRecord], path: Path | str) -> int:
         writer = csv.writer(
             fh, delimiter=DELIMITER, quoting=csv.QUOTE_MINIMAL, lineterminator="\n"
         )
-        writer.writerow(HEADER)
-        for rec in records:
-            writer.writerow(
-                [
-                    sanitize(rec.biblissima),
-                    sanitize(rec.label),
-                    sanitize(rec.manifest),
-                    sanitize(rec.license),
-                    sanitize(rec.credits),
-                ]
-            )
+        writer.writerow(header)
+        for row in rows:
+            writer.writerow([sanitize(str(v)) for v in row])
             count += 1
     tmp.replace(path)
     return count
+
+
+def write_mss_cex(records: Iterable[ManifestRecord], path: Path | str) -> int:
+    """Write manuscript manifest records to ``mss.cex``; return the row count."""
+    return write_cex(
+        path,
+        HEADER,
+        (
+            (r.biblissima, r.label, r.manifest, r.license, r.credits)
+            for r in records
+        ),
+    )

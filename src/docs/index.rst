@@ -8,4 +8,6 @@ manuscripts, the texts they contain, and their IIIF manifests.
    :maxdepth: 2
 
    mss-cex
+   texts-cex
+   textindex-cex
    api

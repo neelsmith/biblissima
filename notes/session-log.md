@@ -71,3 +71,13 @@ Files touched: notes/01-data-sources.md, notes/02-plan.md, notes/session-log.md 
 - Implemented rights lookup (Wikibase P196[P191] -> digital library: operator, licence, conditions URL); refactored client (HttpClient, shared Throttle, WikibaseClient);
   new modules rights.py, harvest.py; CLI --no-rights. 42 tests pass under the stdlib shim. Not run live. Next: user runs `uv run pytest`, then `biblissima mss --limit 20` and inspects rights columns.
 - CLI progress line now every 100 records (was 1000).
+- CTS question: no CTS URN in Biblissima data found (10-cts-findings.md). Work same_as sample hosts: Wikibase, BnF, GND, LoC, IdRef...; no Perseus. Next: build texts/works catalog + cross-reference, collecting all Work same_as links; CTS matching as a later enrichment.
+- User specified data/texts.cex: header biblissima|urn|group|work, CTS work-level URNs with trailing colon. Plan in 11-texts-cex-plan.md. Needs CTS catalogue metadata: user to sparse-clone Perseus/OGL repos into data/cts-sources/.
+- CTS catalogue parsed (2,188 works / 432 groups; see 11-texts-cex-plan.md). Group/work names are CTS's own (Ptolemy group is "Claudius Ptolemaeus", Almagest is "Syntaxis mathematica"): name policy to confirm. Next: discovery of Biblissima Work/author/title forms (Ptolemy etc.).
+- Built CTS matching pipeline (cts.py, wikidata.py, texts.py, CLI `texts`), tests (57 pass under shim), docs page texts-cex.rst. Author -> Wikidata -> TLG/PHI -> CTS group; title match within group; threshold 0.85, review file.
+  Next: user saves Wikidata TLG/PHI mapping (SPARQL), runs `biblissima texts`, reviews counts and texts_review.cex.
+- First texts run produced header-only files. Cause: wrong Wikidata property numbers (taken from other Wikibases' search results, not Wikidata). Added guards (wikidata loader sanity check, CLI error on zero matches). Offline diagnosis via cache: 12,890 works with Wikidata-linked authors. Next: find correct Wikidata properties.
+- Correct Wikidata properties: P3576 (TLG author), P6941 (PHI Latin author). Updated wikidata.py docs/constant. Next: user re-runs the Wikidata query, then `biblissima texts` (portal responses cached).
+- texts.cex built (838 rows, 381 review). Added `textindex` (src/biblissima/textindex.py, CLI `biblissima textindex`, docs textindex-cex.rst, 5 tests).
+  Locations come from Component.minmax_folios (free text e.g. "176v-177*", "082-146*", "170"); in sample many are null. Probe in notes/samples/location/. `C minmax_folios MM` does NOT filter nulls (MM comes back None).
+  Normalisation: drop trailing '*', strip leading zeros; no recto/verso invented. Pattern summary printed at end of run.

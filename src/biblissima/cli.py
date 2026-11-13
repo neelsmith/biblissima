@@ -19,6 +19,22 @@ from .client import (
 from .export import write_mss_cex
 from .harvest import build_mss_records
 from .rights import RightsStats
+from .textindex import (
+    IndexStats,
+    build_index,
+    iter_text_rows,
+    load_column,
+    load_work_urns,
+    write_textindex_cex,
+)
+from .texts import (
+    attach_authors,
+    fetch_works,
+    match_work,
+    split_matches,
+    write_review_cex,
+    write_texts_cex,
+)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -53,7 +69,113 @@ def build_parser() -> argparse.ArgumentParser:
     mss.add_argument(
         "--cache-dir", default=None, help="cache raw responses here to allow resuming"
     )
+
+    texts = sub.add_parser(
+        "texts", help="write data/texts.cex: Biblissima works matched to CTS work URNs"
+    )
+    texts.add_argument("--out", default="data/texts.cex")
+    texts.add_argument("--review", default="data/texts_review.cex")
+    texts.add_argument(
+        "--cts", nargs="+", required=True, help="directories holding __cts__.xml files"
+    )
+    texts.add_argument(
+        "--wikidata",
+        required=True,
+        help="saved SPARQL JSON mapping Wikidata items to TLG/PHI author ids",
+    )
+    texts.add_argument("--threshold", type=float, default=0.85)
+    texts.add_argument("--review-threshold", type=float, default=0.6)
+    texts.add_argument("--user-agent", default=DEFAULT_USER_AGENT)
+    texts.add_argument("--base-url", default=DEFAULT_BASE_URL)
+    texts.add_argument("--page-size", type=int, default=2000)
+    texts.add_argument("--min-interval", type=float, default=1.0)
+    texts.add_argument("--cache-dir", default=None)
+
+    ti = sub.add_parser(
+        "textindex", help="write data/textindex.cex: which texts are in which manuscripts"
+    )
+    ti.add_argument("--out", default="data/textindex.cex")
+    ti.add_argument("--mss", default="data/mss.cex")
+    ti.add_argument("--texts", default="data/texts.cex")
+    ti.add_argument("--user-agent", default=DEFAULT_USER_AGENT)
+    ti.add_argument("--base-url", default=DEFAULT_BASE_URL)
+    ti.add_argument("--page-size", type=int, default=5000)
+    ti.add_argument("--limit", type=int, default=None, help="rows per query (testing)")
+    ti.add_argument("--min-interval", type=float, default=1.0)
+    ti.add_argument("--cache-dir", default=None)
     return parser
+
+
+def _run_texts(args: argparse.Namespace) -> int:
+    from .cts import load_catalog
+    from .wikidata import load_group_urns
+
+    catalog = load_catalog(args.cts)
+    print(
+        f"CTS catalogue: {len(catalog.groups)} groups, {len(catalog.works)} works",
+        file=sys.stderr,
+    )
+    group_urns = load_group_urns(args.wikidata)
+    portal = PortalClient(
+        base_url=args.base_url,
+        user_agent=args.user_agent,
+        min_interval=args.min_interval,
+        cache_dir=args.cache_dir,
+    )
+    portal.check_endpoint()
+    works = fetch_works(portal, page_size=args.page_size)
+    print(f"{len(works)} Biblissima works", file=sys.stderr)
+    attach_authors(portal, works, page_size=args.page_size)
+    with_group = [
+        w
+        for w in works.values()
+        if any(
+            g in catalog.groups for q in w.author_qids for g in group_urns.get(q, [])
+        )
+    ]
+    print(f"{len(with_group)} works have an author in a CTS text group", file=sys.stderr)
+    if not with_group:
+        raise BiblissimaError(
+            "no Biblissima work has an author in a CTS text group: check that the "
+            "Wikidata file maps authors to TLG/PHI numbers that exist in the CTS catalogue"
+        )
+    accepted, review = split_matches(
+        (match_work(w, catalog, group_urns) for w in with_group),
+        args.threshold,
+        args.review_threshold,
+    )
+    n = write_texts_cex(accepted, args.out)
+    r = write_review_cex(review, args.review)
+    print(f"wrote {n} rows to {args.out}; {r} to review in {args.review}", file=sys.stderr)
+    return 0
+
+
+def _run_textindex(args: argparse.Namespace) -> int:
+    mss = load_column(args.mss)
+    works = load_work_urns(args.texts)
+    print(f"{len(mss)} manuscripts, {len(works)} texts", file=sys.stderr)
+    portal = PortalClient(
+        base_url=args.base_url,
+        user_agent=args.user_agent,
+        min_interval=args.min_interval,
+        cache_dir=args.cache_dir,
+    )
+    portal.check_endpoint()
+    stats = IndexStats()
+
+    def progress():
+        for i, row in enumerate(
+            iter_text_rows(portal, page_size=args.page_size, limit=args.limit), 1
+        ):
+            if i % 20000 == 0:
+                print(f"  {i} links read", file=sys.stderr)
+            yield row
+
+    rows = build_index(progress(), mss, works, stats)
+    n = write_textindex_cex(rows, args.out)
+    print(stats.summary(), file=sys.stderr)
+    print(f"wrote {n} rows to {args.out}", file=sys.stderr)
+    return 0
 
 
 def _run_mss(args: argparse.Namespace) -> int:
@@ -99,6 +221,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     try:
         if args.command == "mss":
             return _run_mss(args)
+        if args.command == "texts":
+            return _run_texts(args)
+        if args.command == "textindex":
+            return _run_textindex(args)
     except BiblissimaError as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 1

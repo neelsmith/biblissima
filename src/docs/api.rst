@@ -18,3 +18,15 @@ API reference
 
 .. automodule:: biblissima.export
    :members:
+
+.. automodule:: biblissima.cts
+   :members:
+
+.. automodule:: biblissima.wikidata
+   :members:
+
+.. automodule:: biblissima.texts
+   :members:
+
+.. automodule:: biblissima.textindex
+   :members:

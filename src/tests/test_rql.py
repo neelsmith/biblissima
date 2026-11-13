@@ -45,3 +45,8 @@ def test_iter_rows_respects_limit():
     rows = list(iter_rows(client, "M", "M is Manuscript", order_by="M", page_size=3, limit=3))
     assert rows == [[1], [2], [3]]
     assert len(client.queries) == 1
+
+
+def test_page_query_distinct():
+    q = page_query("W,P", "W is Work", order_by="W,P", limit=5, offset=0, distinct=True)
+    assert q.startswith("DISTINCT Any W,P ORDERBY")

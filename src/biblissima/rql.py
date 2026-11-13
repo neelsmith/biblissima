@@ -28,13 +28,20 @@ def quote(value: str) -> str:
 
 
 def page_query(
-    select: str, where: str, *, order_by: str, limit: int, offset: int
+    select: str,
+    where: str,
+    *,
+    order_by: str,
+    limit: int,
+    offset: int,
+    distinct: bool = False,
 ) -> str:
     """Build one page of a query."""
     if limit <= 0 or offset < 0:
         raise ValueError("limit must be positive and offset non-negative")
+    head = "DISTINCT Any" if distinct else "Any"
     return (
-        f"Any {select} ORDERBY {order_by} LIMIT {limit} OFFSET {offset} "
+        f"{head} {select} ORDERBY {order_by} LIMIT {limit} OFFSET {offset} "
         f"WHERE {where}"
     )
 
@@ -47,6 +54,7 @@ def iter_rows(
     order_by: str,
     page_size: int = 2000,
     limit: int | None = None,
+    distinct: bool = False,
 ) -> Iterator[list]:
     """Yield every row of a query, fetching ``page_size`` rows at a time.
 
@@ -61,7 +69,12 @@ def iter_rows(
         if size <= 0:
             return
         query = page_query(
-            select, where, order_by=order_by, limit=size, offset=offset
+            select,
+            where,
+            order_by=order_by,
+            limit=size,
+            offset=offset,
+            distinct=distinct,
         )
         rows = client.rql(query, allow_empty=offset > 0)
         for row in rows:
