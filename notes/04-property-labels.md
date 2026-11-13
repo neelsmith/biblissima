@@ -1,0 +1,368 @@
+# Wikibase properties (id | fr label | datatype)
+Generated 2026-11-08 from samples/prop_labels_*.json (365 properties).
+
+- P2 | nature de l'élément | wikibase-item
+- P3 | propriété équivalente | url
+- P5 | URL de base pour cette propriété | url
+- P6 | voir aussi | wikibase-property
+- P7 | sous-classe de | wikibase-item
+- P10 | URL | url
+- P18 | réputé identique à | wikibase-item
+- P27 | remplacé par | wikibase-item
+- P36 | remplace | wikibase-item
+- P38 | qualité de l'information | wikibase-item
+- P45 | domaine d'activité | wikibase-item
+- P52 | classe équivalente | url
+- P53 | sous-classe externe | url
+- P54 | correspondance exacte | url
+- P55 | concept parent | wikibase-item
+- P56 | sous-propriété de | wikibase-property
+- P57 | date de naissance | time
+- P58 | date de fondation ou de création | time
+- P60 | date de consultation | time
+- P61 | URL de la référence | url
+- P62 | date de mort | time
+- P72 | pas avant cette date | time
+- P73 | pas après cette date | time
+- P74 | précision sur la date | wikibase-item
+- P75 | date maximale | time
+- P76 | date minimale | time
+- P78 | date de dissolution ou de démolition | time
+- P84 | valeur minimale | quantity
+- P85 | valeur maximale | quantity
+- P93 | indiqué comme | string
+- P95 | sexe ou genre | wikibase-item
+- P99 | actif en/en vie | time
+- P100 | début de la période d'activité | time
+- P101 | fin de la période d'activité | time
+- P105 | lieu de naissance | string
+- P106 | lieu de mort | string
+- P107 | lieu de fondation | string
+- P108 | format de l'URL | string
+- P109 | identifiant Bibliothèque nationale de France | external-id
+- P110 | identifiant Bibliothèque du Congrès | external-id
+- P111 | identifiant Gemeinsame Normdatei | external-id
+- P112 | identifiant Wikidata | external-id
+- P113 | identifiant VIAF | external-id
+- P114 | identifiant IdRef | external-id
+- P115 | identifiant Bibliothèque nationale d'Espagne | external-id
+- P116 | identifiant Bibliothèque royale des Pays-Bas | external-id
+- P117 | identifiant CERL | external-id
+- P118 | identifiant Union List of Artist Names | external-id
+- P119 | identifiant Oxford Dictionary of National Biography | external-id
+- P120 | identifiant Dizionario Biografico degli Italiani | external-id
+- P121 | identifiant Archives de littérature du Moyen Âge | external-id
+- P122 | identifiant Dictionnaire de spiritualité | external-id
+- P123 | identifiant GeoNames | external-id
+- P124 | identifiant Klosterdatenbank | external-id
+- P125 | identifiant ISNI | external-id
+- P126 | identifiant Dictionnaire historique de la Suisse | external-id
+- P127 | identifiant Biografisch Portaal van Nederland | external-id
+- P128 | identifiant La France savante CTHS | external-id
+- P129 | identifiant Portail Biblissima | external-id
+- P130 | note Biblissima | string
+- P131 | identifiant Bibale (IRHT) | external-id
+- P132 | Bibliography of the History of the Czech Lands ID | external-id
+- P133 | identifiant Bibliothèque de la Bourgeoisie de Berne (Catalogue en ligne des Archives) | external-id
+- P134 | identifiant Bibliotheques françoises (CESR, Université de Tours) | external-id
+- P135 | identifiant British Armorial Bindings | external-id
+- P136 | identifiant CartulR (Répertoire des cartulaires manuscrits médiévaux) (IRHT) | external-id
+- P137 | identifiant Comité d'histoire de la Bibliothèque nationale de France | external-id
+- P138 | German Biography ID | external-id
+- P139 | identifiant Initiale (catalogue informatisé de manuscrits enluminés du Moyen Âge) (IRHT) | external-id
+- P140 | identifiant Jonas (Répertoire des textes et des manuscrits médiévaux d'oc et d'oïl) (IRHT) | external-id
+- P141 | identifiant Manuscripta medica (EPHE) | external-id
+- P142 | Medieval Manuscripts in Oxford Libraries ID | external-id
+- P143 | Modern Greek Visual Prosopography ID | external-id
+- P144 | identifiant Numelyo (Bibliothèque numérique de Lyon) | external-id
+- P145 | identifiant Pinakes (Textes et manuscrits grecs) (IRHT) | external-id
+- P146 | BEACON ID | external-id
+- P147 | identifiant Reliures | external-id
+- P148 | Repertorium academicum germanicum ID | external-id
+- P149 | Repertorium "Geschichtsquellen des deutschen Mittelalters" ID | external-id
+- P150 | identifiant Scholasticon | external-id
+- P151 | Typenrepertorium der Wiegendrucke ID | external-id
+- P152 | Archivio dei possessori (Biblioteca Marciana, Venezia) ID | external-id
+- P153 | Gesamtkatalog der Wiegendrucke ID | external-id
+- P154 | Cartusiana ID | external-id
+- P155 | Biografisch Woordenboek van Nederland (BWN)1880-2000 (Huygens Instituut voor Nederlandse Geschiedenis) ID | external-id
+- P156 | The Syriac Reference Portal ID | external-id
+- P157 | identifiant Collections numériques de la Sorbonne | external-id
+- P158 | Lombardia Beni Culturali portale del patrimonio culturale lombardo ID | external-id
+- P159 | The History of Parliament ID (Institute of Historical Research) | external-id
+- P160 | Legacies of British Slave-ownership ID (University College, London) | external-id
+- P161 | Islamic Scientific Manuscripts Initiative ID | external-id
+- P162 | identifiant FIHRIST | external-id
+- P163 | Owners of Incunabula (satellite database of Material Evidence in Incunabula (MEI) ID | external-id
+- P164 | identifiant Base biographique (Bibliothèque interuniversitaire de santé, Université Paris Descartes) | external-id
+- P165 | identifiant FranceArchives | external-id
+- P166 | identifiant Dictionnaire biographique croate | external-id
+- P167 | identifiant Croatiae auctores Latini | external-id
+- P168 | récupéré de | url
+- P169 | partie de | wikibase-item
+- P170 | comprend | wikibase-item
+- P172 | pays | wikibase-item
+- P173 | code d'élément GeoNames | external-id
+- P174 | répertoire d'autorité matière | url
+- P175 | identifiant Thesaurus of Geographic Names | external-id
+- P176 | latitude | string
+- P177 | longitude | string
+- P178 | identifiant Pleiades: gazetier des toponymes historiques | external-id
+- P179 | identifiant Dictionnaire scientifique de la Bible online | external-id
+- P180 | identifiant Référentiel des lieux de la base de données Trismegistos | external-id
+- P181 | identifiant Héritage de l'influence portuguaise | external-id
+- P182 | identifiant Atlas numérique de l'Empire romain | external-id
+- P183 | identifiant Dictionnaire historique du Japon | external-id
+- P184 | à ne pas confondre avec | wikibase-item
+- P185 | considéré différent de | wikibase-item
+- P186 | identifiant BNM-I | external-id
+- P187 | licence | wikibase-item
+- P188 | site officiel | url
+- P189 | URL de la collection IIIF | url
+- P190 | URL de l'API IIIF Change Discovery | url
+- P191 | bibliothèque numérique | wikibase-item
+- P192 | seeAlso metadata schema | string
+- P193 | est conforme à | wikibase-item
+- P194 | collection | wikibase-item
+- P195 | cote | string
+- P196 | manifeste IIIF | url
+- P197 | numérisation disponible à l'URL | url
+- P198 | identifiant BnF Archives et manuscrits | external-id
+- P199 | identifiant plateforme Biblissima IIIF-Collections | external-id
+- P200 | opérateur | wikibase-item
+- P201 | localisation | wikibase-item
+- P202 | identifiant RCR | external-id
+- P203 | identifiant CCFr | external-id
+- P204 | identifiant Anagrafe | external-id
+- P205 | identifiant Personendatenbank | external-id
+- P206 | Hebrew Manuscripts at the Bodleian Libraries ID | external-id
+- P207 | père | wikibase-item
+- P208 | enfant | wikibase-item
+- P209 | mère | wikibase-item
+- P210 | Occurrences de l'entité dans IIIF-Collections | external-id
+- P212 | identifiant Scholastic Commentaries and Texts Archive | external-id
+- P213 | identifiant ARCA (IRHT) | external-id
+- P214 | identifiant New Testament Virtual Manuscript Room | external-id
+- P215 | identifiant Center for the Study of New Testament Manuscripts | external-id
+- P216 | identifiant Philelfiana | external-id
+- P217 | identifiant Commentaria in Aristotelem Graeca et Byzantina | external-id
+- P218 | identifiant BAV Online Catalogue | external-id
+- P220 | identifiant Universiteitsbibliotheek Utrecht Catalogue | external-id
+- P221 | identifiant Anemi - the Digital Library of Modern Greek Studies | external-id
+- P222 | identifiant Biblioteca Virtual del Patrimonio Bibliográfico | external-id
+- P223 | identifiant Bibliothèques Virtuelles Humanistes. Fac-similés | external-id
+- P224 | identifiant Corsair (Morgan Library & Museum) | external-id
+- P225 | identifiant ÖNB Online Catalogue | external-id
+- P226 | identifiant BEU Online Catalogue | external-id
+- P227 | identifiant Libraria (IRHT) | external-id
+- P228 | identifiant Manuscrits antiques et médiévaux conservés en Suisse | external-id
+- P229 | identifiant Codices Electronici Ecclesiae Coloniensis | external-id
+- P230 | identifiant Sotheby's | external-id
+- P231 | identifiant Bibliotheca Terrae Sanctae | external-id
+- P232 | identifiant BL Catalogue of illuminated manuscripts | external-id
+- P233 | identifiant BNE Digital | external-id
+- P234 | identifiant Biblioteca de la Fundación Lázaro Galdiano, Catálogo | external-id
+- P235 | identifiant Nuova Biblioteca Manoscritta | external-id
+- P236 | identifiant Calames (ABES) | external-id
+- P237 | identifiant Mémoire vive (Patrimoine numérisé de Besançon) | external-id
+- P238 | identifiant Archivio Capitolare Pistoia | external-id
+- P239 | identifiant GREDOS | external-id
+- P240 | identifiant Schøyen Collection | external-id
+- P241 | identifiant University of Toronto Libraries Catalogue | external-id
+- P242 | identifiant Manus Online | external-id
+- P243 | identifiant HOLLIS (Harvard Library Catalog) | external-id
+- P244 | identifiant Irnerio | external-id
+- P245 | identifiant Les Enluminures | external-id
+- P246 | identifiant Bibliothèque virtuelle du Mont Saint-Michel | external-id
+- P247 | identifiant Handschriftendatenbank der HAB Wolfenbüttel | external-id
+- P248 | identifiant CAPITULARIA | external-id
+- P249 | identifiant Bayerischen Staatsbibliothek, Katalog | external-id
+- P250 | identifiant Esprit des livres (EnC) | external-id
+- P251 | identifiant Institut de France | external-id
+- P252 | identifiant RegeCart (IRHT) | external-id
+- P253 | identifiant RODERIC | external-id
+- P254 | identifiant TROBES | external-id
+- P255 | identifiant Manuscripta Mediaevalia | external-id
+- P256 | identifiant Handschriftencensus | external-id
+- P257 | identifiant Manuscrits de Chartres (IRHT) | external-id
+- P258 | identifiant Archives départementales de l'Eure | external-id
+- P259 | identifiant Archives départementales de la Haute-Marne | external-id
+- P260 | identifiant Archives départementales de la Somme | external-id
+- P261 | identifiant Archives départementales de l'Yonne | external-id
+- P262 | identifiant Utrecht University Library. Special Collections | external-id
+- P263 | identifiant Bibliotheca Laureshamensis - digital | external-id
+- P264 | identifiant Yale Library Catalog | external-id
+- P266 | identifiant Mittelalterliche Handschriften in Österreich | external-id
+- P267 | identifiant Biblioteca Medicea Laurenziana, Catalogo | external-id
+- P268 | identifiant Archives départementales du Doubs | external-id
+- P269 | identifiant BL Archives and Manuscripts | external-id
+- P270 | identifiant Mandragore (BnF) | external-id
+- P271 | identifiant Europeana regia | external-id
+- P272 | identifiant Bryn Mawr College Library Special Collections | external-id
+- P273 | identifiant SUDOC (Système Universitaire de Documentation) | external-id
+- P274 | identifiant Wellcome Library Catalogue | external-id
+- P275 | identifiant Bibliothèque municipale de Lyon, Catalogue | external-id
+- P276 | coordonnées géographiques | globe-coordinate
+- P279 | type de numérisation | wikibase-item
+- P280 | identifiant Universiteitsbibliotheek Gent Catalogus | external-id
+- P281 | état de la conservation | wikibase-item
+- P282 | identifiant AD Calvados | external-id
+- P283 | identifiant Comparatio manuscrits | external-id
+- P284 | identifiant Cantus | external-id
+- P285 | identifiant Bavarikon | external-id
+- P286 | identifiant SBB manuscrits | external-id
+- P287 | identifiant UB Graz Catalogue | external-id
+- P288 | identifiant DigitArq | external-id
+- P289 | identifiant Catalogue of Archives and Manuscript Collections (NLS) | external-id
+- P290 | peut-être identique à | wikibase-item
+- P291 | membre de | wikibase-item
+- P292 | conjoint | wikibase-item
+- P293 | identifiant Sigilla | external-id
+- P294 | identifiant Muséofile | external-id
+- P295 | identifiant FAMA | external-id
+- P296 | identifiant Bibliotheca legum | external-id
+- P297 | identifiant Commulysse | external-id
+- P298 | identifiant Bn-r | external-id
+- P299 | identifiant Limédia galeries | external-id
+- P300 | identifiant Bibliothèque numérique d'agglomération de Saint-Omer | external-id
+- P301 | identifiant Overnia | external-id
+- P302 | identifiant CICweb.be | external-id
+- P303 | identifiant Foli@ | external-id
+- P304 | identifiant PaGella | external-id
+- P305 | identifiant Les Tablettes rennaises | external-id
+- P306 | identifiant Bibliothèque numérique Méjanes | external-id
+- P307 | identifiant Bibliothèque numérique de Laon | external-id
+- P308 | identifiant Catalogue de la Médiathèque de Poitiers | external-id
+- P309 | identifiant Patrimoine numérisé des Médiathèques de Moulins | external-id
+- P310 | identifiant Cat’zArts | external-id
+- P311 | identifiant Patrimoine numérisé de la BM de Lille | external-id
+- P312 | identifiant Aurelia | external-id
+- P313 | identifiant P@trimoine en images | external-id
+- P315 | identifiant Dole archives patrimoine | external-id
+- P316 | identifiant Archives départementales de la Meuse | external-id
+- P317 | identifiant Archives départementales du Cantal | external-id
+- P318 | identifiant l'Armarium | external-id
+- P319 | identifiant Catalogue de la BM de Nantes | external-id
+- P320 | identifiant Bibliothèque numérique de l'ICP | external-id
+- P321 | identifiant Patrimoine numérique de la Médiathèque de Valenciennes | external-id
+- P322 | identifiant Patrimoine numérisé de la BM de Dijon | external-id
+- P323 | identifiant Portail des collections du Réseau des Musées de Normandie | external-id
+- P324 | identifiant Catalogue des Bibliothèques de Châlons-en-Champagne | external-id
+- P325 | identifiant The Huntington Library Catalogue | external-id
+- P326 | Identifiant vocabulaires Bibliothèque du Congrès | external-id
+- P327 | code ISO 639-3 | external-id
+- P328 | identifiant Catalogue des bibliothèques spécialisées de la Ville de Paris | external-id
+- P329 | identifiant The Hunterian, Archives & Special Collections | external-id
+- P330 | identifiant Digital Scriptorium | external-id
+- P331 | identifiant BL Explore | external-id
+- P332 | identifiant Biblioteca nacional de Portugal | external-id
+- P333 | identifiant Petrocoria-num | external-id
+- P334 | identifiant The University of Chicago Library Catalog | external-id
+- P335 | identifiant Österreichisches Staatsarchiv | external-id
+- P336 | identifiant Legito | external-id
+- P337 | identifiant Museum Catharijneconvent | external-id
+- P338 | identifiant Archives départementales des Hautes-Alpes | external-id
+- P339 | identifiant Archives départementales du Rhône | external-id
+- P340 | identifiant Archives départementales d'Indre-et-Loire | external-id
+- P341 | identifiant Princeton University Library Catalog | external-id
+- P342 | identifiant Leiden University Libraries Catalogue | external-id
+- P343 | identifiant National Library of Wales | external-id
+- P344 | identifiant Catalogue of the National Archives (UK) | external-id
+- P345 | identifiant Leeds University Library’s Special Collections | external-id
+- P346 | identifiant Handrit.is | external-id
+- P347 | identifiant Newberry Library Catalog | external-id
+- P348 | Library of Congress Control Number | external-id
+- P349 | identifiant University of Liverpool, Special Collections & Archives | external-id
+- P350 | identifiant National Library of South Africa Catalog | external-id
+- P351 | identifiant Archives nationales, Salle des inventaires virtuelle | external-id
+- P352 | identifiant Catalogue Museum Meermanno | external-id
+- P353 | identifiant Heidelberg. Bibliothèque universitaire | external-id
+- P354 | auteur | wikibase-item
+- P355 | langue | wikibase-item
+- P356 | identifiant Repertorium biblicum Medii Aevi | external-id
+- P357 | famille | wikibase-item
+- P358 | identifiant Comparatio œuvres | external-id
+- P359 | présent dans l'œuvre | wikibase-item
+- P360 | raison de la dépréciation | wikibase-item
+- P361 | identifiant Catalogue de la BM de Versailles | external-id
+- P362 | frère ou sœur | wikibase-item
+- P363 | propriété d'identifiant associée | wikibase-property
+- P364 | élément associé à la propriété | wikibase-item
+- P365 | identifiant Athar (Persée) | external-id
+- P366 | URL des conditions d'utilisation | url
+- P367 | est top concept de | wikibase-item
+- P368 | a pour top concept | wikibase-item
+- P369 | propriété inverse | wikibase-property
+- P370 | identifiant Integrated Database for Early Music | external-id
+- P371 | identifiant Catalogue de la BM de Besançon | external-id
+- P372 | identifiant Catalogue de la BM de Grenoble | external-id
+- P373 | identifiant Catalogue de la BM d'Albi | external-id
+- P374 | identifiant Catalogue de la BM de Colmar | external-id
+- P375 | identifiant Catalogue de la Bibliothèque Sainte-Geneviève | external-id
+- P376 | identifiant Catalogue Université Paris Cité | external-id
+- P377 | identifiant Alexandrine | external-id
+- P378 | dépôt du code source | url
+- P379 | bibliographie | string
+- P380 | Biblio_Biblissima_ID | external-id
+- P381 | pages | string
+- P382 | identifiant BiblIndex (HISOMA) | external-id
+- P383 | identifiant Collecta | external-id
+- P384 | fonctionnalité IIIF | wikibase-item
+- P385 | identifiant Thesauri PDN (Caen) | external-id
+- P386 | identifiant StaBiKat | external-id
+- P387 | identifiant KBR | external-id
+- P388 | identifiant Brill Primary Sources | external-id
+- P389 | identifiant Handschriftenportal | external-id
+- P390 | identifiant RISM | external-id
+- P391 | incipit | string
+- P393 | identifiant ThEMA | external-id
+- P394 | identifiant URN LMU München | external-id
+- P395 | identifiant DHB Erfurt/ Gotha | external-id
+- P396 | diocèse | wikibase-item
+- P397 | relation de service personnelle | wikibase-item
+- P398 | entité associée | wikibase-item
+- P399 | ami | wikibase-item
+- P400 | controverse/ débat | string
+- P401 | cursus | wikibase-item
+- P402 | carrière ecclésiastique | wikibase-item
+- P403 | date de l'œuvre | string
+- P404 | notice Lincoln Cathedral Catalogue | url
+- P405 | identifiant Studium Parisiense | external-id
+- P406 | notice descriptive Manus Online | external-id
+- P407 | identifiant PARES (Portal de Archivos Españoles) | external-id
+- P408 | identifiant Manuscripta.pl | external-id
+- P409 | identifiant Légendiers latins | external-id
+- P410 | identifiant Handschriftencensus Rheinland-Pfalz | external-id
+- P411 | identifiant Médiathèque de Troyes | external-id
+- P412 | identifiant Earlier Latin Manuscripts | external-id
+- P413 | identifiant Medieval Libraries of Great Britain | external-id
+- P414 | identifiant Manuscriptorium | external-id
+- P415 | identifiant Catalogue Escorial | external-id
+- P416 | identifiant BStK Online | external-id
+- P417 | identifiant AGATHA (Archives de l'État, Belgique) | external-id
+- P418 | identifiant Princeton University Library, J. H. Scheide Collection | external-id
+- P419 | identifiant Biblioteca Ambrosiana | external-id
+- P420 | identifiant swisscollections | external-id
+- P421 | identifiant Biblioteca de Catalunya | external-id
+- P422 | identifiant Institucion Colombina | external-id
+- P423 | identifiant Bibliothèque royale du Danemark | external-id
+- P424 | identifiant KU Leuven | external-id
+- P425 | identifiant Biblioteca Casanatense | external-id
+- P426 | identifiant Archives Hub | external-id
+- P427 | identifiant Gloucestershire Heritage Hub | external-id
+- P428 | identifiant Virtuelles Skriptorium St. Matthias | external-id
+- P429 | identifiant National Library of Medicine | external-id
+- P430 | entité correspondante | wikibase-item
+- P431 | source de l'information | wikibase-item
+- P432 | identifiant Renumar | external-id
+- P433 | identifiant Balliol College Historic Collections | external-id
+- P434 | type d'identifiant | wikibase-item
+- P435 | identifiant University of Michigan Library | external-id
+- P436 | identifiant MMFC (Manuscript) | external-id
+- P437 | identifiant MMFC (Authority) | external-id
+- P438 | identifiant Tresoar | external-id
+- P439 | identifiant Libris | external-id
+- P440 | identifiant BerlPap | external-id
+- P441 | identifiant Mérimée | external-id
+- P442 | identifiant Palissy | external-id
+- P443 | édition numérique | string

@@ -1,0 +1,14 @@
+attributes.json	200	4832
+n_text.json	200	9
+n_work.json	200	9
+n_component.json	200	10
+n_manifest.json	200	10
+n_ms_with_manifest.json	200	2
+n_ms_with_text.json	200	2
+pal_components.json	200	697
+pal_texts.json	200	696
+pal_works.json	200	518
+pal_manifests.json	200	195
+pal_manifest_uri.json	200	62
+page_test.json	200	50
+limit_test.json	200	167806

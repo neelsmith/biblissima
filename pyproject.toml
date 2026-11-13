@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "biblissima"
+version = "0.1.0"
+description = "Work with data from the Biblissima portal: manuscripts, the texts in them, and their IIIF manifests."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["requests>=2.28"]
+
+[project.scripts]
+biblissima = "biblissima.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-cov>=5"]
+docs = ["sphinx>=7", "furo>=2024.1.29"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/biblissima"]
+
+[tool.pytest.ini_options]
+testpaths = ["src/tests"]
+pythonpath = ["src"]
+markers = ["live: tests that need network access to Biblissima (run with -m live)"]
+addopts = "-m 'not live'"

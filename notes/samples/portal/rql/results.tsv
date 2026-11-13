@@ -1,0 +1,4 @@
+Any COUNT(X) WHERE X is Manuscript	200	application/json	10
+Any N WHERE X is CWEType, X name N	200	application/json	1505
+Any E,R,T WHERE X is CWRelation, X from_entity EE, EE name E, X relation_type RR, RR name R, X to_entity TT, TT name T	200	application/json	35305
+Any X LIMIT 3 WHERE X is Manuscript, X cote "Pal.gr.348"	200	application/json	1541
