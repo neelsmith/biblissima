@@ -84,3 +84,4 @@ Files touched: notes/01-data-sources.md, notes/02-plan.md, notes/session-log.md 
 - textindex run: 10,766 rows / 3,672 mss; 86% with location; normalisation extended (`--`, `f.`, `32r-v`).
 - Added `names` (src/biblissima/names.py, CLI `biblissima names`, docs names-cex.rst): groupnames.cex from Person preferred/other forms (only persons Wikidata-mapped to the group), worknames.cex from Work title/preferred/other forms. Probe in notes/samples/names/ (Person 136883 Ptolemy has ~60 forms incl. glued junk; Work 722489 Almageste has Almagest, Syntaxis mathematica...). Names equal to CTS names omitted.
 - names cleaning v2: person date tails, bare numbers, work '(trad.)' and lowercase 'author, title' forms handled.
+- wrote scratch/guide.md and scratch/reference.md (rebuild guide + method reference).
