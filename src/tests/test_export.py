@@ -6,7 +6,9 @@ from biblissima.export import sanitize
 
 
 def test_header_constant():
-    assert "|".join(HEADER) == "biblissima|label|manifest|manifest_license|manifest_credits"
+    assert "|".join(HEADER) == (
+        "biblissima|label|manifest|manifest_license|manifest_credits|collection"
+    )
 
 
 def test_sanitize():
@@ -16,7 +18,7 @@ def test_sanitize():
 
 def test_write_file_content():
     recs = [
-        ManifestRecord("ark:/1", "Label one", "http://m/1", "CC0", "BnF"),
+        ManifestRecord("ark:/1", "Label one", "http://m/1", "CC0", "BnF", collection="Vatican"),
         ManifestRecord("ark:/2", "Has | pipe\nand newline", "http://m/2"),
     ]
     with tempfile.TemporaryDirectory() as d:
@@ -25,9 +27,9 @@ def test_write_file_content():
         lines = out.read_text(encoding="utf-8").split("\n")
         assert not Path(str(out) + ".part").exists()
     assert n == 2
-    assert lines[0] == "biblissima|label|manifest|manifest_license|manifest_credits"
-    assert lines[1] == "ark:/1|Label one|http://m/1|CC0|BnF"
-    assert lines[2] == 'ark:/2|"Has | pipe and newline"|http://m/2||'
+    assert lines[0] == "biblissima|label|manifest|manifest_license|manifest_credits|collection"
+    assert lines[1] == "ark:/1|Label one|http://m/1|CC0|BnF|Vatican"
+    assert lines[2] == 'ark:/2|"Has | pipe and newline"|http://m/2|||'
     assert lines[3] == ""
 
 
@@ -41,4 +43,4 @@ def test_round_trip_with_csv_reader():
         with out.open(encoding="utf-8", newline="") as fh:
             rows = list(csv.reader(fh, delimiter="|"))
     assert rows[1][1] == 'Say "hi" | now'
-    assert len(rows[1]) == 5
+    assert len(rows[1]) == 6

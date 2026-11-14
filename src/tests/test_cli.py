@@ -15,7 +15,7 @@ def test_mss_command_writes_file():
     try:
         with tempfile.TemporaryDirectory() as d:
             out = Path(d) / "mss.cex"
-            code = cli.main(["mss", "--out", str(out), "--limit", "5", "--no-rights"])
+            code = cli.main(["mss", "--out", str(out), "--limit", "5", "--no-rights", "--no-collections"])
             text = out.read_text(encoding="utf-8")
     finally:
         cli.PortalClient = original

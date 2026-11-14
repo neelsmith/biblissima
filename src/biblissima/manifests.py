@@ -26,6 +26,7 @@ ORDER_BY = "M,U"
 class ManifestRecord:
     """One manuscript / IIIF manifest pair.
 
+    ``collection`` is the institution or collection that holds the manuscript.
     ``qid`` is the manuscript's item in the Biblissima Wikibase (``Q123``), when
     known. ``license`` and ``credits`` are filled in by :mod:`biblissima.rights`.
     """
@@ -36,6 +37,7 @@ class ManifestRecord:
     license: str = ""
     credits: str = ""
     qid: str = ""
+    collection: str = ""
 
 
 def clean_label(raw: Optional[str]) -> str:
@@ -106,3 +108,50 @@ def iter_qids(
             yield ark, match.group(1)
         if max_rows is not None and count >= max_rows:
             return
+
+
+COLLECTION_SELECT = "MA,CT"
+COLLECTION_WHERE = (
+    "M is Manuscript, M ark MA, M manifests X, M stored_at C, C displayed_title CT"
+)
+
+
+def iter_collections(
+    client: PortalClient, *, page_size: int = 2000
+) -> Iterator[tuple[str, str]]:
+    """Yield ``(manuscript ark, label of its holding institution)``.
+
+    The portal records the holder as ``Manuscript stored_at CorporateBody``
+    (about 99% of manuscripts have one). Only manuscripts with a manifest are
+    asked for.
+    """
+    for ark, title in iter_rows(
+        client,
+        COLLECTION_SELECT,
+        COLLECTION_WHERE,
+        order_by="MA,CT",
+        page_size=page_size,
+        distinct=True,
+    ):
+        label = clean_label(title)
+        if ark and label:
+            yield ark, label
+
+
+def collection_labels(
+    client: PortalClient, *, page_size: int = 2000, progress=None
+) -> dict[str, str]:
+    """``{manuscript ark: label}``; several holders are joined with ``"; "``.
+
+    ``progress``, if given, is called with a message every 20,000 rows.
+    """
+    found: dict[str, list[str]] = {}
+    for n, (ark, label) in enumerate(
+        iter_collections(client, page_size=page_size), 1
+    ):
+        if progress and n % 20000 == 0:
+            progress(f"  {n} holder rows read")
+        labels = found.setdefault(ark, [])
+        if label not in labels:
+            labels.append(label)
+    return {ark: "; ".join(v) for ark, v in found.items()}

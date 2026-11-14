@@ -19,6 +19,12 @@ Columns
     Rights or licence terms for the manifest.
 ``manifest_credits``
     Source or credit statement for the manifest.
+``collection``
+    The institution or collection that holds the manuscript, for example
+    ``Vatican. Biblioteca apostolica vaticana``. It is the portal's
+    ``stored_at`` organisation (about 99% of manuscripts have one); several
+    holders are joined with ``;`` and the column is empty when none is recorded.
+    Run with ``--no-collections`` to skip this lookup.
 
 Fields that contain the ``|`` delimiter are wrapped in double quotes, as with
 CSV (use a CSV reader with ``delimiter="|"``). Line breaks are replaced by

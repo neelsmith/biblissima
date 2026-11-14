@@ -10,7 +10,14 @@ from typing import Iterable, Sequence
 from .manifests import ManifestRecord
 
 #: Column names of ``mss.cex``.
-HEADER = ("biblissima", "label", "manifest", "manifest_license", "manifest_credits")
+HEADER = (
+    "biblissima",
+    "label",
+    "manifest",
+    "manifest_license",
+    "manifest_credits",
+    "collection",
+)
 DELIMITER = "|"
 
 _WHITESPACE = re.compile(r"\s+")
@@ -56,7 +63,7 @@ def write_mss_cex(records: Iterable[ManifestRecord], path: Path | str) -> int:
         path,
         HEADER,
         (
-            (r.biblissima, r.label, r.manifest, r.license, r.credits)
+            (r.biblissima, r.label, r.manifest, r.license, r.credits, r.collection)
             for r in records
         ),
     )

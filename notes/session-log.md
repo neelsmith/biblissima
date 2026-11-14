@@ -85,3 +85,5 @@ Files touched: notes/01-data-sources.md, notes/02-plan.md, notes/session-log.md 
 - Added `names` (src/biblissima/names.py, CLI `biblissima names`, docs names-cex.rst): groupnames.cex from Person preferred/other forms (only persons Wikidata-mapped to the group), worknames.cex from Work title/preferred/other forms. Probe in notes/samples/names/ (Person 136883 Ptolemy has ~60 forms incl. glued junk; Work 722489 Almageste has Almagest, Syntaxis mathematica...). Names equal to CTS names omitted.
 - names cleaning v2: person date tails, bare numbers, work '(trad.)' and lowercase 'author, title' forms handled.
 - wrote scratch/guide.md and scratch/reference.md (rebuild guide + method reference).
+- Added `release` (src/biblissima/release.py, CLI `biblissima release`): datareleases/VERSION.cex with #!version/#!mss/#!texts/#!textindex blocks; version from dataversion.txt; refuses overwrite without --force.
+- mss.cex gets 6th column `collection` (portal Manuscript stored_at CorporateBody displayed_title; 334,613/338,731 MSS have it; extra paged query, cached). Flag --no-collections. Wikibase P194 gives same label for Pal.gr.348.

@@ -33,3 +33,6 @@ API reference
 
 .. automodule:: biblissima.names
    :members:
+
+.. automodule:: biblissima.release
+   :members:

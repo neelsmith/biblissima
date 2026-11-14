@@ -19,6 +19,7 @@ from .client import (
 from .export import write_mss_cex
 from .harvest import build_mss_records
 from .rights import RightsStats
+from .release import build_release
 from .names import (
     build_group_names,
     build_work_names,
@@ -67,6 +68,11 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="skip the Wikibase lookups; license and credits stay empty",
     )
+    mss.add_argument(
+        "--no-collections",
+        action="store_true",
+        help="skip the holding-institution lookup; collection stays empty",
+    )
     mss.add_argument("--page-size", type=int, default=2000)
     mss.add_argument("--limit", type=int, default=None, help="stop after N records")
     mss.add_argument(
@@ -99,6 +105,14 @@ def build_parser() -> argparse.ArgumentParser:
     texts.add_argument("--page-size", type=int, default=2000)
     texts.add_argument("--min-interval", type=float, default=1.0)
     texts.add_argument("--cache-dir", default=None)
+
+    rel = sub.add_parser(
+        "release", help="combine mss, texts and textindex into datareleases/VERSION.cex"
+    )
+    rel.add_argument("--version-file", default="dataversion.txt")
+    rel.add_argument("--data-dir", default="data")
+    rel.add_argument("--out-dir", default="datareleases")
+    rel.add_argument("--force", action="store_true", help="replace an existing release")
 
     nm = sub.add_parser(
         "names",
@@ -255,6 +269,8 @@ def _run_mss(args: argparse.Namespace) -> int:
                 wikibase,
                 page_size=args.page_size,
                 limit=args.limit,
+                collections=not args.no_collections,
+                progress=lambda msg: print(msg, file=sys.stderr, flush=True),
                 stats=stats,
             ),
             1,
@@ -277,6 +293,12 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             return _run_mss(args)
         if args.command == "texts":
             return _run_texts(args)
+        if args.command == "release":
+            out = build_release(
+                args.version_file, args.data_dir, args.out_dir, force=args.force
+            )
+            print(f"wrote {out}", file=sys.stderr)
+            return 0
         if args.command == "names":
             return _run_names(args)
         if args.command == "textindex":
