@@ -30,3 +30,6 @@ API reference
 
 .. automodule:: biblissima.textindex
    :members:
+
+.. automodule:: biblissima.names
+   :members:

@@ -10,4 +10,5 @@ manuscripts, the texts they contain, and their IIIF manifests.
    mss-cex
    texts-cex
    textindex-cex
+   names-cex
    api

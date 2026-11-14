@@ -7,4 +7,4 @@ dist/
 build/
 src/docs/_build/
 .cache/
-
+scratch/

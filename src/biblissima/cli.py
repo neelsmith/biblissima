@@ -19,6 +19,15 @@ from .client import (
 from .export import write_mss_cex
 from .harvest import build_mss_records
 from .rights import RightsStats
+from .names import (
+    build_group_names,
+    build_work_names,
+    fetch_person_forms,
+    fetch_person_qids,
+    fetch_work_authors,
+    load_texts,
+    write_names_cex,
+)
 from .textindex import (
     IndexStats,
     build_index,
@@ -91,6 +100,20 @@ def build_parser() -> argparse.ArgumentParser:
     texts.add_argument("--min-interval", type=float, default=1.0)
     texts.add_argument("--cache-dir", default=None)
 
+    nm = sub.add_parser(
+        "names",
+        help="write data/groupnames.cex and data/worknames.cex: alternative names",
+    )
+    nm.add_argument("--texts", default="data/texts.cex")
+    nm.add_argument("--wikidata", default="data/wikidata_tlg_phi.json")
+    nm.add_argument("--out-groups", default="data/groupnames.cex")
+    nm.add_argument("--out-works", default="data/worknames.cex")
+    nm.add_argument("--user-agent", default=DEFAULT_USER_AGENT)
+    nm.add_argument("--base-url", default=DEFAULT_BASE_URL)
+    nm.add_argument("--page-size", type=int, default=2000)
+    nm.add_argument("--min-interval", type=float, default=1.0)
+    nm.add_argument("--cache-dir", default=None)
+
     ti = sub.add_parser(
         "textindex", help="write data/textindex.cex: which texts are in which manuscripts"
     )
@@ -147,6 +170,37 @@ def _run_texts(args: argparse.Namespace) -> int:
     n = write_texts_cex(accepted, args.out)
     r = write_review_cex(review, args.review)
     print(f"wrote {n} rows to {args.out}; {r} to review in {args.review}", file=sys.stderr)
+    return 0
+
+
+def _run_names(args: argparse.Namespace) -> int:
+    from .wikidata import load_group_urns
+
+    texts = load_texts(args.texts)
+    group_urns = load_group_urns(args.wikidata)
+    portal = PortalClient(
+        base_url=args.base_url,
+        user_agent=args.user_agent,
+        min_interval=args.min_interval,
+        cache_dir=args.cache_dir,
+    )
+    portal.check_endpoint()
+    works = fetch_works(portal, page_size=args.page_size)
+    work_authors = fetch_work_authors(portal, args.page_size)
+    person_qids = fetch_person_qids(portal, args.page_size)
+    person_forms = fetch_person_forms(portal)
+    print(
+        f"{len(texts)} texts; {len(person_forms)} persons with name forms",
+        file=sys.stderr,
+    )
+    work_rows = build_work_names(works, texts)
+    group_rows = build_group_names(
+        works, texts, work_authors, person_qids, person_forms, group_urns
+    )
+    w = write_names_cex(work_rows, args.out_works)
+    g = write_names_cex(group_rows, args.out_groups)
+    print(f"wrote {g} group names to {args.out_groups}", file=sys.stderr)
+    print(f"wrote {w} work names to {args.out_works}", file=sys.stderr)
     return 0
 
 
@@ -223,6 +277,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             return _run_mss(args)
         if args.command == "texts":
             return _run_texts(args)
+        if args.command == "names":
+            return _run_names(args)
         if args.command == "textindex":
             return _run_textindex(args)
     except BiblissimaError as exc:

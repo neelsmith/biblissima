@@ -81,3 +81,6 @@ Files touched: notes/01-data-sources.md, notes/02-plan.md, notes/session-log.md 
 - texts.cex built (838 rows, 381 review). Added `textindex` (src/biblissima/textindex.py, CLI `biblissima textindex`, docs textindex-cex.rst, 5 tests).
   Locations come from Component.minmax_folios (free text e.g. "176v-177*", "082-146*", "170"); in sample many are null. Probe in notes/samples/location/. `C minmax_folios MM` does NOT filter nulls (MM comes back None).
   Normalisation: drop trailing '*', strip leading zeros; no recto/verso invented. Pattern summary printed at end of run.
+- textindex run: 10,766 rows / 3,672 mss; 86% with location; normalisation extended (`--`, `f.`, `32r-v`).
+- Added `names` (src/biblissima/names.py, CLI `biblissima names`, docs names-cex.rst): groupnames.cex from Person preferred/other forms (only persons Wikidata-mapped to the group), worknames.cex from Work title/preferred/other forms. Probe in notes/samples/names/ (Person 136883 Ptolemy has ~60 forms incl. glued junk; Work 722489 Almageste has Almagest, Syntaxis mathematica...). Names equal to CTS names omitted.
+- names cleaning v2: person date tails, bare numbers, work '(trad.)' and lowercase 'author, title' forms handled.
