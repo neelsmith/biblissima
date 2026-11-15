@@ -45,8 +45,8 @@
       "console": []
     },
     {
-      "id": "UICu",
-      "code_hash": "6ef798a1fca9b23e6f213f2210a8aeda",
+      "id": "bkHC",
+      "code_hash": "f09469f942215dc2ce1570101a1b4246",
       "outputs": [
         {
           "type": "data",
@@ -58,13 +58,39 @@
       "console": []
     },
     {
-      "id": "PKri",
-      "code_hash": "2e4e0785853dd5d51c6288836f91b468",
+      "id": "lEQa",
+      "code_hash": "486cec825114e09c1a593cdfa076bd72",
       "outputs": [
         {
           "type": "data",
           "data": {
-            "text/html": "<marimo-ui-element object-id='PKri-0' random-id='0d65b671-ed75-4608-be1a-603586d1ae6f'><marimo-slider data-initial-value='30' data-label='&quot;&#92;u003cspan class=&#92;&quot;markdown prose dark:prose-invert contents&#92;&quot;&#92;u003e&#92;u003cspan class=&#92;&quot;paragraph&#92;&quot;&#92;u003eBars to show&#92;u003c/span&#92;u003e&#92;u003c/span&#92;u003e&quot;' data-start='10' data-stop='100' data-step='5' data-steps='[]' data-debounce='false' data-disabled='false' data-orientation='&quot;horizontal&quot;' data-show-value='false' data-include-input='false' data-full-width='false'></marimo-slider></marimo-ui-element>"
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "bf2c98c9a5d9f0fa0eb79a843f4c7d86",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "sipC",
+      "code_hash": "9c60248ac8d2eee803a18ca4c509c9a4",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='sipC-0' random-id='eb58aa23-2bed-d1df-0510-4d5eb9372a87'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;_marimo_row_id&#92;&quot;:0,&#92;&quot;collection&#92;&quot;:&#92;&quot;Paris. Biblioth&#92;&#92;u00e8que nationale de France, D&#92;&#92;u00e9partement des manuscrits&#92;&quot;,&#92;&quot;count&#92;&quot;:70055},{&#92;&quot;_marimo_row_id&#92;&quot;:1,&#92;&quot;collection&#92;&quot;:&#92;&quot;Vatican. Biblioteca apostolica vaticana&#92;&quot;,&#92;&quot;count&#92;&quot;:30508},{&#92;&quot;_marimo_row_id&#92;&quot;:2,&#92;&quot;collection&#92;&quot;:&#92;&quot;Munich. Bayerische Staatsbibliothek&#92;&quot;,&#92;&quot;count&#92;&quot;:12313},{&#92;&quot;_marimo_row_id&#92;&quot;:3,&#92;&quot;collection&#92;&quot;:&#92;&quot;Florence. Biblioteca Medicea Laurenziana&#92;&quot;,&#92;&quot;count&#92;&quot;:4113},{&#92;&quot;_marimo_row_id&#92;&quot;:4,&#92;&quot;collection&#92;&quot;:&#92;&quot;Oxford. Bodleian Library&#92;&quot;,&#92;&quot;count&#92;&quot;:3608},{&#92;&quot;_marimo_row_id&#92;&quot;:5,&#92;&quot;collection&#92;&quot;:&#92;&quot;Troyes. M&#92;&#92;u00e9diath&#92;&#92;u00e8que Jacques-Chirac&#92;&quot;,&#92;&quot;count&#92;&quot;:2728},{&#92;&quot;_marimo_row_id&#92;&quot;:6,&#92;&quot;collection&#92;&quot;:&#92;&quot;Paris. Archives nationales&#92;&quot;,&#92;&quot;count&#92;&quot;:2677},{&#92;&quot;_marimo_row_id&#92;&quot;:7,&#92;&quot;collection&#92;&quot;:&#92;&quot;Lisbonne. Biblioteca nacional de Portugal&#92;&quot;,&#92;&quot;count&#92;&quot;:2301},{&#92;&quot;_marimo_row_id&#92;&quot;:8,&#92;&quot;collection&#92;&quot;:&#92;&quot;Paris. Biblioth&#92;&#92;u00e8que de l&#x27;Arsenal&#92;&quot;,&#92;&quot;count&#92;&quot;:2071},{&#92;&quot;_marimo_row_id&#92;&quot;:9,&#92;&quot;collection&#92;&quot;:&#92;&quot;Karlsruhe. Badische Landesbibliothek&#92;&quot;,&#92;&quot;count&#92;&quot;:1917}]&quot;' data-total-rows='782' data-total-columns='2' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;collection&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;count&quot;,[&quot;integer&quot;,&quot;u32&quot;]]]' data-selection='&quot;multi&quot;' data-show-filters='true' data-show-download='true' data-show-search='true' data-show-column-summaries='true' data-show-data-types='true' data-show-page-size-selector='true' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-hidden-columns='[]' data-has-stable-row-id='true' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
           }
         }
       ],
@@ -72,33 +98,7 @@
     },
     {
       "id": "SFPL",
-      "code_hash": "4a83f6da02e17231159659a4c3913262",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/html": "<div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"collections-holding-manuscripts\">Collections holding manuscripts</h2></span><marimo-mime-renderer data-mime='&quot;application/vnd.vegalite.v6+json&quot;' data-data='&quot;{&#92;n  &#92;&quot;&#36;schema&#92;&quot;: &#92;&quot;https://vega.github.io/schema/vega-lite/v6.4.1.json&#92;&quot;,&#92;n  &#92;&quot;config&#92;&quot;: {&#92;n    &#92;&quot;view&#92;&quot;: {&#92;n      &#92;&quot;continuousHeight&#92;&quot;: 300,&#92;n      &#92;&quot;continuousWidth&#92;&quot;: 300&#92;n    }&#92;n  },&#92;n  &#92;&quot;data&#92;&quot;: {&#92;n    &#92;&quot;values&#92;&quot;: [&#92;n      {&#92;n        &#92;&quot;collection&#92;&quot;: &#92;&quot;Paris. Biblioth\u00e8que nationale de France, D\u00e9partement des manuscrits&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 55395&#92;n      },&#92;n      {&#92;n        &#92;&quot;collection&#92;&quot;: &#92;&quot;Vatican. Biblioteca apostolica vaticana&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 30406&#92;n      },&#92;n      {&#92;n        &#92;&quot;collection&#92;&quot;: &#92;&quot;Munich. Bayerische Staatsbibliothek&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 11851&#92;n      },&#92;n      {&#92;n        &#92;&quot;collection&#92;&quot;: &#92;&quot;Florence. Biblioteca Medicea Laurenziana&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 4111&#92;n      },&#92;n      {&#92;n        &#92;&quot;collection&#92;&quot;: &#92;&quot;Oxford. Bodleian Library&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 3410&#92;n      },&#92;n      {&#92;n        &#92;&quot;collection&#92;&quot;: &#92;&quot;Paris. Archives nationales&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 2677&#92;n      },&#92;n      {&#92;n        &#92;&quot;collection&#92;&quot;: &#92;&quot;Lisbonne. Biblioteca nacional de Portugal&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 2300&#92;n      },&#92;n      {&#92;n        &#92;&quot;collection&#92;&quot;: &#92;&quot;Karlsruhe. Badische Landesbibliothek&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 1913&#92;n      },&#92;n      {&#92;n        &#92;&quot;collection&#92;&quot;: &#92;&quot;Paris. Biblioth\u00e8que de l&#x27;Arsenal&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 1825&#92;n      },&#92;n      {&#92;n        &#92;&quot;collection&#92;&quot;: &#92;&quot;Troyes. M\u00e9diath\u00e8que Jacques-Chirac&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 1781&#92;n      }&#92;n    ]&#92;n  },&#92;n  &#92;&quot;encoding&#92;&quot;: {&#92;n    &#92;&quot;tooltip&#92;&quot;: [&#92;n      {&#92;n        &#92;&quot;field&#92;&quot;: &#92;&quot;collection&#92;&quot;,&#92;n        &#92;&quot;type&#92;&quot;: &#92;&quot;nominal&#92;&quot;&#92;n      },&#92;n      {&#92;n        &#92;&quot;field&#92;&quot;: &#92;&quot;n&#92;&quot;,&#92;n        &#92;&quot;type&#92;&quot;: &#92;&quot;quantitative&#92;&quot;&#92;n      }&#92;n    ],&#92;n    &#92;&quot;x&#92;&quot;: {&#92;n      &#92;&quot;field&#92;&quot;: &#92;&quot;n&#92;&quot;,&#92;n      &#92;&quot;title&#92;&quot;: &#92;&quot;count&#92;&quot;,&#92;n      &#92;&quot;type&#92;&quot;: &#92;&quot;quantitative&#92;&quot;&#92;n    },&#92;n    &#92;&quot;y&#92;&quot;: {&#92;n      &#92;&quot;field&#92;&quot;: &#92;&quot;collection&#92;&quot;,&#92;n      &#92;&quot;sort&#92;&quot;: &#92;&quot;-x&#92;&quot;,&#92;n      &#92;&quot;title&#92;&quot;: null,&#92;n      &#92;&quot;type&#92;&quot;: &#92;&quot;nominal&#92;&quot;&#92;n    }&#92;n  },&#92;n  &#92;&quot;height&#92;&quot;: 180,&#92;n  &#92;&quot;mark&#92;&quot;: {&#92;n    &#92;&quot;type&#92;&quot;: &#92;&quot;bar&#92;&quot;&#92;n  },&#92;n  &#92;&quot;title&#92;&quot;: &#92;&quot;Manuscripts per collection (top 10 of 782 values)&#92;&quot;,&#92;n  &#92;&quot;usermeta&#92;&quot;: {&#92;n    &#92;&quot;embedOptions&#92;&quot;: {}&#92;n  },&#92;n  &#92;&quot;width&#92;&quot;: 600&#92;n}&quot;'></marimo-mime-renderer></div>"
-          }
-        }
-      ],
-      "console": []
-    },
-    {
-      "id": "uRik",
-      "code_hash": "e5148401a38978b6117a6b09df52d916",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/html": "<marimo-ui-element object-id='uRik-0' random-id='7bfa3af4-7902-4254-1c4b-5de61749606b'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/mdatacbca27d1322e1022bcd4ca6ff8f9cf200598fbab&#92;&quot;,&#92;&quot;label&#92;&quot;:&#92;&quot;Gotha. Forschungsbibliothek, Memb. I 120&#92;&quot;,&#92;&quot;manifest&#92;&quot;:&#92;&quot;https://dhb.thulb.uni-jena.de/api/iiif/presentation/v2/ufb_derivate_00011751/manifest&#92;&quot;,&#92;&quot;manifest_license&#92;&quot;:&#92;&quot;Creative Commons Attribution-ShareAlike&#92;&quot;,&#92;&quot;manifest_credits&#92;&quot;:&#92;&quot;Digitale Historische Bibliothek Erfurt/Gotha (Gotha. Research Library / Erfurt. University Library)&#92;&quot;,&#92;&quot;collection&#92;&quot;:&#92;&quot;Gotha. Forschungsbibliothek&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/mdatacbca27d1322e1022bcd4ca6ff8f9cf200598fbab&#92;&quot;,&#92;&quot;label&#92;&quot;:&#92;&quot;Gotha. Forschungsbibliothek, Memb. I 120&#92;&quot;,&#92;&quot;manifest&#92;&quot;:&#92;&quot;https://digi.ub.uni-heidelberg.de/diglit/iiif/fbg_membI120/manifest.json&#92;&quot;,&#92;&quot;manifest_license&#92;&quot;:&#92;&quot;Public Domain Mark&#92;&quot;,&#92;&quot;manifest_credits&#92;&quot;:&#92;&quot;Heidelberger historische Best&#92;&#92;u00e4nde &#92;&#92;u2013 digital (Heidelberg. University Library)&#92;&quot;,&#92;&quot;collection&#92;&quot;:&#92;&quot;Gotha. Forschungsbibliothek&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/mdata696a69f2d7cbed67622b2217ba953e7d87bf7868&#92;&quot;,&#92;&quot;label&#92;&quot;:&#92;&quot;Heidelberg. Universit&#92;&#92;u00e4tsbibliothek, Cod. Pal. germ. 181&#92;&quot;,&#92;&quot;manifest&#92;&quot;:&#92;&quot;https://digi.ub.uni-heidelberg.de/diglit/iiif/cpg181/manifest.json&#92;&quot;,&#92;&quot;manifest_license&#92;&quot;:&#92;&quot;Public Domain Mark&#92;&quot;,&#92;&quot;manifest_credits&#92;&quot;:&#92;&quot;Heidelberger historische Best&#92;&#92;u00e4nde &#92;&#92;u2013 digital (Heidelberg. University Library)&#92;&quot;,&#92;&quot;collection&#92;&quot;:&#92;&quot;Heidelberg. Universit&#92;&#92;u00e4tsbibliothek&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/mdata5a1edf7798a519258c1c38ce3a0b85d054a8c382&#92;&quot;,&#92;&quot;label&#92;&quot;:&#92;&quot;Heidelberg. Universit&#92;&#92;u00e4tsbibliothek, Cod. Pal. germ. 203&#92;&quot;,&#92;&quot;manifest&#92;&quot;:&#92;&quot;https://digi.ub.uni-heidelberg.de/diglit/iiif/cpg203/manifest.json&#92;&quot;,&#92;&quot;manifest_license&#92;&quot;:&#92;&quot;Public Domain Mark&#92;&quot;,&#92;&quot;manifest_credits&#92;&quot;:&#92;&quot;Heidelberger historische Best&#92;&#92;u00e4nde &#92;&#92;u2013 digital (Heidelberg. University Library)&#92;&quot;,&#92;&quot;collection&#92;&quot;:&#92;&quot;Heidelberg. Universit&#92;&#92;u00e4tsbibliothek&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/mdatafd43075298068aa9158c9be2e0f8dce44c282a10&#92;&quot;,&#92;&quot;label&#92;&quot;:&#92;&quot;Heidelberg. Universit&#92;&#92;u00e4tsbibliothek, Cod. Pal. graec. 281&#92;&quot;,&#92;&quot;manifest&#92;&quot;:&#92;&quot;https://digi.ub.uni-heidelberg.de/diglit/iiif/cpgraec281/manifest.json&#92;&quot;,&#92;&quot;manifest_license&#92;&quot;:null,&#92;&quot;manifest_credits&#92;&quot;:&#92;&quot;Bibliotheca Palatina - digital (Heidelberg. University Library)&#92;&quot;,&#92;&quot;collection&#92;&quot;:&#92;&quot;Heidelberg. Universit&#92;&#92;u00e4tsbibliothek&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/mdata6d17bc137133035b234570db44abfd5ca4d7e7f7&#92;&quot;,&#92;&quot;label&#92;&quot;:&#92;&quot;Heidelberg. Universit&#92;&#92;u00e4tsbibliothek, Cod. Pal. germ. 205&#92;&quot;,&#92;&quot;manifest&#92;&quot;:&#92;&quot;https://digi.ub.uni-heidelberg.de/diglit/iiif/cpg205/manifest.json&#92;&quot;,&#92;&quot;manifest_license&#92;&quot;:&#92;&quot;Public Domain Mark&#92;&quot;,&#92;&quot;manifest_credits&#92;&quot;:&#92;&quot;Heidelberger historische Best&#92;&#92;u00e4nde &#92;&#92;u2013 digital (Heidelberg. University Library)&#92;&quot;,&#92;&quot;collection&#92;&quot;:&#92;&quot;Heidelberg. Universit&#92;&#92;u00e4tsbibliothek&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/mdata1aa73871cfc28a39901471a9da7d7f4e3f3b9880&#92;&quot;,&#92;&quot;label&#92;&quot;:&#92;&quot;Heidelberg. Universit&#92;&#92;u00e4tsbibliothek, Cod. Pal. germ. 216&#92;&quot;,&#92;&quot;manifest&#92;&quot;:&#92;&quot;https://digi.ub.uni-heidelberg.de/diglit/iiif/cpg216/manifest.json&#92;&quot;,&#92;&quot;manifest_license&#92;&quot;:&#92;&quot;Public Domain Mark&#92;&quot;,&#92;&quot;manifest_credits&#92;&quot;:&#92;&quot;Heidelberger historische Best&#92;&#92;u00e4nde &#92;&#92;u2013 digital (Heidelberg. University Library)&#92;&quot;,&#92;&quot;collection&#92;&quot;:&#92;&quot;Heidelberg. Universit&#92;&#92;u00e4tsbibliothek&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/mdata1841d67690d390337c9f3d269ba3b6f1c15b69b6&#92;&quot;,&#92;&quot;label&#92;&quot;:&#92;&quot;Heidelberg. Universit&#92;&#92;u00e4tsbibliothek, Cod. Pal. germ. 766&#92;&quot;,&#92;&quot;manifest&#92;&quot;:&#92;&quot;https://digi.ub.uni-heidelberg.de/diglit/iiif/cpg766/manifest.json&#92;&quot;,&#92;&quot;manifest_license&#92;&quot;:&#92;&quot;Public Domain Mark&#92;&quot;,&#92;&quot;manifest_credits&#92;&quot;:&#92;&quot;Heidelberger historische Best&#92;&#92;u00e4nde &#92;&#92;u2013 digital (Heidelberg. University Library)&#92;&quot;,&#92;&quot;collection&#92;&quot;:&#92;&quot;Heidelberg. Universit&#92;&#92;u00e4tsbibliothek&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/mdatac53fb156dfaf94045f3ecb0476234c04f6c98f80&#92;&quot;,&#92;&quot;label&#92;&quot;:&#92;&quot;Heidelberg. Universit&#92;&#92;u00e4tsbibliothek, Cod. Pal. germ. 226a&#92;&quot;,&#92;&quot;manifest&#92;&quot;:&#92;&quot;https://digi.ub.uni-heidelberg.de/diglit/iiif/cpg226a/manifest.json&#92;&quot;,&#92;&quot;manifest_license&#92;&quot;:&#92;&quot;Public Domain Mark&#92;&quot;,&#92;&quot;manifest_credits&#92;&quot;:&#92;&quot;Heidelberger historische Best&#92;&#92;u00e4nde &#92;&#92;u2013 digital (Heidelberg. University Library)&#92;&quot;,&#92;&quot;collection&#92;&quot;:&#92;&quot;Heidelberg. Universit&#92;&#92;u00e4tsbibliothek&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/mdata851fd2415d209b4d1878749b1590a55f9aea5995&#92;&quot;,&#92;&quot;label&#92;&quot;:&#92;&quot;Heidelberg. Universit&#92;&#92;u00e4tsbibliothek, Cod. Pal. germ. 765&#92;&quot;,&#92;&quot;manifest&#92;&quot;:&#92;&quot;https://digi.ub.uni-heidelberg.de/diglit/iiif/cpg765/manifest.json&#92;&quot;,&#92;&quot;manifest_license&#92;&quot;:&#92;&quot;Public Domain Mark&#92;&quot;,&#92;&quot;manifest_credits&#92;&quot;:&#92;&quot;Heidelberger historische Best&#92;&#92;u00e4nde &#92;&#92;u2013 digital (Heidelberg. University Library)&#92;&quot;,&#92;&quot;collection&#92;&quot;:&#92;&quot;Heidelberg. Universit&#92;&#92;u00e4tsbibliothek&#92;&quot;}]&quot;' data-total-rows='182498' data-total-columns='6' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;biblissima&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;label&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;manifest&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;manifest_license&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;manifest_credits&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;collection&quot;,[&quot;string&quot;,&quot;str&quot;]]]' data-show-filters='true' data-show-download='true' data-show-search='true' data-show-column-summaries='true' data-show-data-types='true' data-show-page-size-selector='true' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-hidden-columns='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
-          }
-        }
-      ],
-      "console": []
-    },
-    {
-      "id": "SQGZ",
-      "code_hash": "36047d62817915e50ecfb02f1346630f",
+      "code_hash": "58de14f4cd37ff64b05994aab9e9db6c",
       "outputs": [
         {
           "type": "data",
@@ -111,12 +111,25 @@
     },
     {
       "id": "BYtC",
-      "code_hash": "1004fe316cc0f9f696543dcd1bc93f81",
+      "code_hash": "9d441b7f80961209f6534e21cf653f25",
       "outputs": [
         {
           "type": "data",
           "data": {
-            "text/html": "<div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"text-groups\">Text groups</h2></span><marimo-mime-renderer data-mime='&quot;application/vnd.vegalite.v6+json&quot;' data-data='&quot;{&#92;n  &#92;&quot;&#36;schema&#92;&quot;: &#92;&quot;https://vega.github.io/schema/vega-lite/v6.4.1.json&#92;&quot;,&#92;n  &#92;&quot;config&#92;&quot;: {&#92;n    &#92;&quot;view&#92;&quot;: {&#92;n      &#92;&quot;continuousHeight&#92;&quot;: 300,&#92;n      &#92;&quot;continuousWidth&#92;&quot;: 300&#92;n    }&#92;n  },&#92;n  &#92;&quot;data&#92;&quot;: {&#92;n    &#92;&quot;values&#92;&quot;: [&#92;n      {&#92;n        &#92;&quot;group&#92;&quot;: &#92;&quot;Galen&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 95&#92;n      },&#92;n      {&#92;n        &#92;&quot;group&#92;&quot;: &#92;&quot;Lucian of Samosata&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 71&#92;n      },&#92;n      {&#92;n        &#92;&quot;group&#92;&quot;: &#92;&quot;Hippocrates&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 48&#92;n      },&#92;n      {&#92;n        &#92;&quot;group&#92;&quot;: &#92;&quot;Aristotle&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 45&#92;n      },&#92;n      {&#92;n        &#92;&quot;group&#92;&quot;: &#92;&quot;Cicero, Marcus Tullius&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 45&#92;n      },&#92;n      {&#92;n        &#92;&quot;group&#92;&quot;: &#92;&quot;Plato&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 33&#92;n      },&#92;n      {&#92;n        &#92;&quot;group&#92;&quot;: &#92;&quot;Philo Judaeus&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 28&#92;n      },&#92;n      {&#92;n        &#92;&quot;group&#92;&quot;: &#92;&quot;Euripides&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 19&#92;n      },&#92;n      {&#92;n        &#92;&quot;group&#92;&quot;: &#92;&quot;Dionysius of Halicarnassus&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 15&#92;n      },&#92;n      {&#92;n        &#92;&quot;group&#92;&quot;: &#92;&quot;Isocrates&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 14&#92;n      }&#92;n    ]&#92;n  },&#92;n  &#92;&quot;encoding&#92;&quot;: {&#92;n    &#92;&quot;tooltip&#92;&quot;: [&#92;n      {&#92;n        &#92;&quot;field&#92;&quot;: &#92;&quot;group&#92;&quot;,&#92;n        &#92;&quot;type&#92;&quot;: &#92;&quot;nominal&#92;&quot;&#92;n      },&#92;n      {&#92;n        &#92;&quot;field&#92;&quot;: &#92;&quot;n&#92;&quot;,&#92;n        &#92;&quot;type&#92;&quot;: &#92;&quot;quantitative&#92;&quot;&#92;n      }&#92;n    ],&#92;n    &#92;&quot;x&#92;&quot;: {&#92;n      &#92;&quot;field&#92;&quot;: &#92;&quot;n&#92;&quot;,&#92;n      &#92;&quot;title&#92;&quot;: &#92;&quot;count&#92;&quot;,&#92;n      &#92;&quot;type&#92;&quot;: &#92;&quot;quantitative&#92;&quot;&#92;n    },&#92;n    &#92;&quot;y&#92;&quot;: {&#92;n      &#92;&quot;field&#92;&quot;: &#92;&quot;group&#92;&quot;,&#92;n      &#92;&quot;sort&#92;&quot;: &#92;&quot;-x&#92;&quot;,&#92;n      &#92;&quot;title&#92;&quot;: null,&#92;n      &#92;&quot;type&#92;&quot;: &#92;&quot;nominal&#92;&quot;&#92;n    }&#92;n  },&#92;n  &#92;&quot;height&#92;&quot;: 180,&#92;n  &#92;&quot;mark&#92;&quot;: {&#92;n    &#92;&quot;type&#92;&quot;: &#92;&quot;bar&#92;&quot;&#92;n  },&#92;n  &#92;&quot;title&#92;&quot;: &#92;&quot;Works per text group (top 10 of 201 values)&#92;&quot;,&#92;n  &#92;&quot;usermeta&#92;&quot;: {&#92;n    &#92;&quot;embedOptions&#92;&quot;: {}&#92;n  },&#92;n  &#92;&quot;width&#92;&quot;: 600&#92;n}&quot;'></marimo-mime-renderer></div>"
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "soVQ",
+      "code_hash": "889e07041517566e72ce23667061274f",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='soVQ-0' random-id='85f458a8-c30f-3cd5-b558-fb38daefa86d'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;_marimo_row_id&#92;&quot;:0,&#92;&quot;group&#92;&quot;:&#92;&quot;Galen&#92;&quot;,&#92;&quot;count&#92;&quot;:95},{&#92;&quot;_marimo_row_id&#92;&quot;:1,&#92;&quot;group&#92;&quot;:&#92;&quot;Lucian of Samosata&#92;&quot;,&#92;&quot;count&#92;&quot;:71},{&#92;&quot;_marimo_row_id&#92;&quot;:2,&#92;&quot;group&#92;&quot;:&#92;&quot;Hippocrates&#92;&quot;,&#92;&quot;count&#92;&quot;:48},{&#92;&quot;_marimo_row_id&#92;&quot;:3,&#92;&quot;group&#92;&quot;:&#92;&quot;Aristotle&#92;&quot;,&#92;&quot;count&#92;&quot;:45},{&#92;&quot;_marimo_row_id&#92;&quot;:4,&#92;&quot;group&#92;&quot;:&#92;&quot;Cicero, Marcus Tullius&#92;&quot;,&#92;&quot;count&#92;&quot;:45},{&#92;&quot;_marimo_row_id&#92;&quot;:5,&#92;&quot;group&#92;&quot;:&#92;&quot;Plato&#92;&quot;,&#92;&quot;count&#92;&quot;:33},{&#92;&quot;_marimo_row_id&#92;&quot;:6,&#92;&quot;group&#92;&quot;:&#92;&quot;Philo Judaeus&#92;&quot;,&#92;&quot;count&#92;&quot;:28},{&#92;&quot;_marimo_row_id&#92;&quot;:7,&#92;&quot;group&#92;&quot;:&#92;&quot;Euripides&#92;&quot;,&#92;&quot;count&#92;&quot;:19},{&#92;&quot;_marimo_row_id&#92;&quot;:8,&#92;&quot;group&#92;&quot;:&#92;&quot;Dionysius of Halicarnassus&#92;&quot;,&#92;&quot;count&#92;&quot;:15},{&#92;&quot;_marimo_row_id&#92;&quot;:9,&#92;&quot;group&#92;&quot;:&#92;&quot;Isocrates&#92;&quot;,&#92;&quot;count&#92;&quot;:14}]&quot;' data-total-rows='201' data-total-columns='2' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;group&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;count&quot;,[&quot;integer&quot;,&quot;u32&quot;]]]' data-selection='&quot;multi&quot;' data-show-filters='true' data-show-download='true' data-show-search='true' data-show-column-summaries='true' data-show-data-types='true' data-show-page-size-selector='true' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-hidden-columns='[]' data-has-stable-row-id='true' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
           }
         }
       ],
@@ -124,32 +137,32 @@
     },
     {
       "id": "RGSE",
-      "code_hash": "d50066c75d15cb87db4e39b4c4df3226",
+      "code_hash": "f440cd22aaa06f556aea6920622df498",
       "outputs": [
         {
           "type": "data",
           "data": {
-            "text/html": "<div style='display: flex;flex: 1;flex-direction: column;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"text-group-work\">Text group - work</h2></span><marimo-mime-renderer data-mime='&quot;application/vnd.vegalite.v6+json&quot;' data-data='&quot;{&#92;n  &#92;&quot;&#36;schema&#92;&quot;: &#92;&quot;https://vega.github.io/schema/vega-lite/v6.4.1.json&#92;&quot;,&#92;n  &#92;&quot;config&#92;&quot;: {&#92;n    &#92;&quot;view&#92;&quot;: {&#92;n      &#92;&quot;continuousHeight&#92;&quot;: 300,&#92;n      &#92;&quot;continuousWidth&#92;&quot;: 300&#92;n    }&#92;n  },&#92;n  &#92;&quot;data&#92;&quot;: {&#92;n    &#92;&quot;values&#92;&quot;: [&#92;n      {&#92;n        &#92;&quot;group_work&#92;&quot;: &#92;&quot;Hippocrates - Prognosticon&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 3&#92;n      },&#92;n      {&#92;n        &#92;&quot;group_work&#92;&quot;: &#92;&quot;Aesop - Fabulae&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 2&#92;n      },&#92;n      {&#92;n        &#92;&quot;group_work&#92;&quot;: &#92;&quot;Aratus Solensis - Phaenomena&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 2&#92;n      },&#92;n      {&#92;n        &#92;&quot;group_work&#92;&quot;: &#92;&quot;Aristotle - Analytica priora&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 2&#92;n      },&#92;n      {&#92;n        &#92;&quot;group_work&#92;&quot;: &#92;&quot;Athanasius of Alexandria - De Incarnatione Verbi&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 2&#92;n      },&#92;n      {&#92;n        &#92;&quot;group_work&#92;&quot;: &#92;&quot;Athanasius of Alexandria - Oratio I contra Arianos&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 2&#92;n      },&#92;n      {&#92;n        &#92;&quot;group_work&#92;&quot;: &#92;&quot;Cicero, Marcus Tullius - Orator&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 2&#92;n      },&#92;n      {&#92;n        &#92;&quot;group_work&#92;&quot;: &#92;&quot;Galen - De consuetudinibus&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 2&#92;n      },&#92;n      {&#92;n        &#92;&quot;group_work&#92;&quot;: &#92;&quot;Galen - De experientia medica&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 2&#92;n      },&#92;n      {&#92;n        &#92;&quot;group_work&#92;&quot;: &#92;&quot;Galen - De optima doctrina&#92;&quot;,&#92;n        &#92;&quot;n&#92;&quot;: 2&#92;n      }&#92;n    ]&#92;n  },&#92;n  &#92;&quot;encoding&#92;&quot;: {&#92;n    &#92;&quot;tooltip&#92;&quot;: [&#92;n      {&#92;n        &#92;&quot;field&#92;&quot;: &#92;&quot;group_work&#92;&quot;,&#92;n        &#92;&quot;type&#92;&quot;: &#92;&quot;nominal&#92;&quot;&#92;n      },&#92;n      {&#92;n        &#92;&quot;field&#92;&quot;: &#92;&quot;n&#92;&quot;,&#92;n        &#92;&quot;type&#92;&quot;: &#92;&quot;quantitative&#92;&quot;&#92;n      }&#92;n    ],&#92;n    &#92;&quot;x&#92;&quot;: {&#92;n      &#92;&quot;field&#92;&quot;: &#92;&quot;n&#92;&quot;,&#92;n      &#92;&quot;title&#92;&quot;: &#92;&quot;count&#92;&quot;,&#92;n      &#92;&quot;type&#92;&quot;: &#92;&quot;quantitative&#92;&quot;&#92;n    },&#92;n    &#92;&quot;y&#92;&quot;: {&#92;n      &#92;&quot;field&#92;&quot;: &#92;&quot;group_work&#92;&quot;,&#92;n      &#92;&quot;sort&#92;&quot;: &#92;&quot;-x&#92;&quot;,&#92;n      &#92;&quot;title&#92;&quot;: null,&#92;n      &#92;&quot;type&#92;&quot;: &#92;&quot;nominal&#92;&quot;&#92;n    }&#92;n  },&#92;n  &#92;&quot;height&#92;&quot;: 180,&#92;n  &#92;&quot;mark&#92;&quot;: {&#92;n    &#92;&quot;type&#92;&quot;: &#92;&quot;bar&#92;&quot;&#92;n  },&#92;n  &#92;&quot;title&#92;&quot;: &#92;&quot;Rows per group - work (top 10 of 818 values)&#92;&quot;,&#92;n  &#92;&quot;usermeta&#92;&quot;: {&#92;n    &#92;&quot;embedOptions&#92;&quot;: {}&#92;n  },&#92;n  &#92;&quot;width&#92;&quot;: 600&#92;n}&quot;'></marimo-mime-renderer></div>"
+            "text/plain": ""
           }
         }
       ],
       "console": []
     },
     {
-      "id": "LQGf",
+      "id": "Kclp",
       "code_hash": "7ec7e6b76a52c44518d34604eac1fe3d",
       "outputs": [
         {
           "type": "data",
           "data": {
-            "text/html": "<marimo-ui-element object-id='LQGf-0' random-id='0aa7388a-0173-a31f-c497-d5a32d59c2a1'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata0026d7fe0cd3f5dd40a7daff44b9b6d7e30e2d62&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:greekLit:tlg2733.tlg001:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Evagrius, Scholasticus&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;Historia Ecclesiastica&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata00a028b8bdf8c0632c3d1213ba1df5bbd900001e&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:greekLit:tlg2034.tlg005:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Porphyrius&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;Ad Marcellam&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata00a879db9384ee3030029706be37a3a2efd6afca&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:greekLit:tlg0086.tlg047:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Aristotle&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;De Xenophane, de Zenone, de Gorgia&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata00e75ad74c9c5c3d80d6e246c8c9fcfb4c89f341&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:greekLit:tlg0062.tlg013:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Lucian of Samosata&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;Calumniae non temere credundum&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata0174043ee65e8069cf2390ea8cd97bd77573e647&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:latinLit:phi0474.phi043:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Cicero, Marcus Tullius&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;De Republica&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata017fb36ab68ebba7d6bae9766c4e57d3e8f3c63f&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:greekLit:tlg0059.tlg020:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Plato&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;Lysis&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata01cf6d1476ba0d62525ea597bfd3d7e520032d80&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:greekLit:tlg1383.tlg001:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Geminus&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;Elementa astronomia&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata024b572543fc412b5bc2d1ef5198bde36f909173&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:greekLit:tlg0732.tlg001:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Alexander of Aphrodisias&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;De mixtione&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata02957793b514d7bc8a5e07e16c1269bf81e737aa&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:greekLit:tlg2042.tlg008:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Origen&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;De oratione&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata029a8d3eadf63e330a2d0b7d7ae84d2f618aa291&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:latinLit:phi1035.phi001:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Valerius Flaccus, Gaius&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;Argonautica&#92;&quot;}]&quot;' data-total-rows='838' data-total-columns='4' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;biblissima&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;urn&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;group&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;work&quot;,[&quot;string&quot;,&quot;str&quot;]]]' data-show-filters='true' data-show-download='true' data-show-search='true' data-show-column-summaries='true' data-show-data-types='true' data-show-page-size-selector='true' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-hidden-columns='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+            "text/html": "<marimo-ui-element object-id='Kclp-0' random-id='6cdd6a66-c24c-f946-b80f-50fc99f8b69d'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata0026d7fe0cd3f5dd40a7daff44b9b6d7e30e2d62&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:greekLit:tlg2733.tlg001:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Evagrius, Scholasticus&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;Historia Ecclesiastica&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata00a028b8bdf8c0632c3d1213ba1df5bbd900001e&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:greekLit:tlg2034.tlg005:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Porphyrius&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;Ad Marcellam&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata00a879db9384ee3030029706be37a3a2efd6afca&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:greekLit:tlg0086.tlg047:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Aristotle&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;De Xenophane, de Zenone, de Gorgia&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata00e75ad74c9c5c3d80d6e246c8c9fcfb4c89f341&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:greekLit:tlg0062.tlg013:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Lucian of Samosata&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;Calumniae non temere credundum&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata0174043ee65e8069cf2390ea8cd97bd77573e647&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:latinLit:phi0474.phi043:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Cicero, Marcus Tullius&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;De Republica&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata017fb36ab68ebba7d6bae9766c4e57d3e8f3c63f&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:greekLit:tlg0059.tlg020:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Plato&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;Lysis&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata01cf6d1476ba0d62525ea597bfd3d7e520032d80&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:greekLit:tlg1383.tlg001:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Geminus&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;Elementa astronomia&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata024b572543fc412b5bc2d1ef5198bde36f909173&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:greekLit:tlg0732.tlg001:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Alexander of Aphrodisias&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;De mixtione&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata02957793b514d7bc8a5e07e16c1269bf81e737aa&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:greekLit:tlg2042.tlg008:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Origen&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;De oratione&#92;&quot;},{&#92;&quot;biblissima&#92;&quot;:&#92;&quot;ark:/43093/oedata029a8d3eadf63e330a2d0b7d7ae84d2f618aa291&#92;&quot;,&#92;&quot;urn&#92;&quot;:&#92;&quot;urn:cts:latinLit:phi1035.phi001:&#92;&quot;,&#92;&quot;group&#92;&quot;:&#92;&quot;Valerius Flaccus, Gaius&#92;&quot;,&#92;&quot;work&#92;&quot;:&#92;&quot;Argonautica&#92;&quot;}]&quot;' data-total-rows='838' data-total-columns='4' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;biblissima&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;urn&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;group&quot;,[&quot;string&quot;,&quot;str&quot;]],[&quot;work&quot;,[&quot;string&quot;,&quot;str&quot;]]]' data-show-filters='true' data-show-download='true' data-show-search='true' data-show-column-summaries='true' data-show-data-types='true' data-show-page-size-selector='true' data-show-column-explorer='true' data-show-chart-builder='true' data-row-headers='[]' data-hidden-columns='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
           }
         }
       ],
       "console": []
     },
     {
-      "id": "iPiG",
+      "id": "emfo",
       "code_hash": "078cd96672d803eca511865933b8de10",
       "outputs": [
         {
@@ -162,8 +175,8 @@
       "console": []
     },
     {
-      "id": "RKcZ",
-      "code_hash": "b49b8e29bedd9c706383704e47789bca",
+      "id": "Hstk",
+      "code_hash": "b8e9d84272af56437459bb81d928428b",
       "outputs": [
         {
           "type": "data",
@@ -175,8 +188,8 @@
       "console": []
     },
     {
-      "id": "ZgvA",
-      "code_hash": "14ed7f35cfa6d0d27ea4dbb7625c0c92",
+      "id": "nWHF",
+      "code_hash": "956325497d9fce718f293f9bbecc8b08",
       "outputs": [
         {
           "type": "data",
@@ -188,7 +201,7 @@
       "console": []
     },
     {
-      "id": "bkHC",
+      "id": "iLit",
       "code_hash": "77c694403bca5a9f838ce6fa716d04eb",
       "outputs": [
         {
@@ -201,7 +214,7 @@
       "console": []
     },
     {
-      "id": "lEQa",
+      "id": "ZHCJ",
       "code_hash": "635c9222f6157415bf5d71dfe8e96b7b",
       "outputs": [
         {
@@ -214,8 +227,8 @@
       "console": []
     },
     {
-      "id": "LjKq",
-      "code_hash": "bff4ccbbd6b4f469090dbb50a105457e",
+      "id": "ROlb",
+      "code_hash": "0efa01017a989a050db65833f4a3ea72",
       "outputs": [
         {
           "type": "data",
@@ -227,7 +240,7 @@
       "console": []
     },
     {
-      "id": "Xref",
+      "id": "qnkX",
       "code_hash": "5eae1eef3f0488eceb9aa4aed991341f",
       "outputs": [
         {

@@ -47,32 +47,36 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(mo):
-    top_n = mo.ui.slider(10, 100, value=30, step=5, label="Bars to show")
-    top_n
-    return (top_n,)
+def _():
+    #top_n = mo.ui.slider(10, 100, value=30, step=5, label="Bars to show")
+    #top_n
+    return
 
 
 @app.cell(hide_code=True)
-def _(frequency_chart, mo, mss, pl, top_n):
+def _(mss, pl):
     # One row per manuscript (a manuscript with several manifests has several rows).
     _manuscripts = mss.unique(subset="biblissima").with_columns(
         pl.col("collection").fill_null("(none recorded)")
     )
-    mo.vstack(
-        [
-            mo.md("## Collections holding manuscripts"),
-            frequency_chart(
-                _manuscripts, "collection", "Manuscripts per collection", top_n.value
-            ),
-        ]
-    )
+    #mo.vstack(
+    #    [
+    #        mo.md("## Collections holding manuscripts"),
+    #        frequency_chart(
+    #            _manuscripts, "collection", "Manuscripts per collection", top_n.value
+    #        ),
+    #    ]
+    #)
     return
 
 
-@app.cell
-def _(mss):
-    mss
+@app.cell(hide_code=True)
+def _(mo, mss):
+    counts_mss = (
+        mss["collection"]
+        .value_counts(sort=True)
+    )
+    mo.ui.table(counts_mss)
     return
 
 
@@ -85,27 +89,37 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(frequency_chart, mo, texts, top_n):
-    mo.vstack(
-        [
-            mo.md("## Text groups"),
-            frequency_chart(texts, "group", "Works per text group", top_n.value),
-        ]
-    )
+def _():
+    #mo.vstack(
+    #    [
+    #        mo.md("## Text groups"),
+    #        frequency_chart(texts, "group", "Works per text group", top_n.value),
+    #    ]
+    #)
     return
 
 
 @app.cell(hide_code=True)
-def _(frequency_chart, mo, pl, texts, top_n):
+def _(mo, texts):
+    counts_tgroups = (
+        texts["group"]
+        .value_counts(sort=True)
+    )
+    mo.ui.table(counts_tgroups)
+    return
+
+
+@app.cell(hide_code=True)
+def _(pl, texts):
     _pairs = texts.with_columns(
         (pl.col("group") + " - " + pl.col("work")).alias("group_work")
     )
-    mo.vstack(
-        [
-            mo.md("## Text group - work"),
-            frequency_chart(_pairs, "group_work", "Rows per group - work", top_n.value),
-        ]
-    )
+    #mo.vstack(
+    #    [
+    #        mo.md("## Text group - work"),
+    #        frequency_chart(_pairs, "group_work", "Rows per group - work", top_n.value),
+    #    ]
+    #)
     return
 
 
@@ -213,7 +227,7 @@ def _(alt, pl):
             )
         )
 
-    return (frequency_chart,)
+    return
 
 
 if __name__ == "__main__":
