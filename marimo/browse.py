@@ -6,9 +6,76 @@ app = marimo.App(width="medium")
 
 @app.cell(hide_code=True)
 def _():
-    from pathlib import Path
-
     import marimo as mo
+
+    return (mo,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md("""
+    # Browse illustrated manuscripts by text
+
+    Choose a text group (an author, for example), then a work, to list the
+    manuscripts with IIIF manifests that contain it. Each manifest links to
+    the IIIF viewer.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(group, mo, workchooser):
+    mo.hstack([group ,workchooser], justify="center")
+    return
+
+
+@app.cell(hide_code=True)
+def _(
+    group,
+    manuscripts_for_work,
+    mo,
+    mss,
+    render_manuscripts_html,
+    textindex,
+    works,
+):
+    mo.stop(group.value is None)
+    _urn = works.value[group.value]
+    mo.stop(_urn is None, mo.md("*Choose a work.*"))
+    _entries = manuscripts_for_work(_urn, textindex, mss)
+    mo.stop(
+        not _entries,
+        mo.md(f"No manuscripts with IIIF manifests are recorded for `{_urn}`."),
+    )
+    mo.vstack(
+        [
+            mo.md(
+                f"### {len(_entries)} manuscript{'' if len(_entries) == 1 else 's'} "
+                f"containing `{_urn}`"
+            ),
+            mo.Html(render_manuscripts_html(_entries)),
+        ]
+    )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.Html("<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md("""
+    # Implementation
+    """)
+    return
+
+
+@app.cell
+def _():
+
 
     from biblissima.browse import (
         group_options,
@@ -18,13 +85,13 @@ def _():
         work_options,
     )
     from biblissima.release import parse_block, read_blocks
+    from pathlib import Path
 
     return (
         Path,
         group_options,
         manuscript_counts,
         manuscripts_for_work,
-        mo,
         parse_block,
         read_blocks,
         render_manuscripts_html,
@@ -35,16 +102,12 @@ def _():
 @app.cell(hide_code=True)
 def _(mo):
     mo.md("""
-    # Browse manuscripts by text
-
-    Choose a text group (an author, for example), then a work, to list the
-    manuscripts with IIIF manifests that contain it. Each manifest links to
-    the IIIF viewer.
+    ## Read source data
     """)
     return
 
 
-@app.cell(hide_code=True)
+@app.cell
 def _(Path, manuscript_counts, mo, parse_block, read_blocks):
     _here = mo.notebook_dir() or Path.cwd()
     _candidates = [
@@ -71,13 +134,21 @@ def _(Path, manuscript_counts, mo, parse_block, read_blocks):
 
 
 @app.cell(hide_code=True)
+def _(mo):
+    mo.md("""
+    ## UI
+    """)
+    return
+
+
+@app.cell
 def _(group_options, mo, texts, version):
     group = mo.ui.dropdown(
         options=group_options(texts),
         label=f"Text group (release {version})",
         full_width=True,
     )
-    group
+
     return (group,)
 
 
@@ -98,33 +169,12 @@ def _(counts, mo, texts, work_options):
     return (works,)
 
 
-@app.cell(hide_code=True)
-def _(group, mo, works):
-    mo.stop(group.value is None, mo.md("*Choose a text group.*"))
-    works[group.value]
-    return
-
-
-@app.cell(hide_code=True)
-def _(group, manuscripts_for_work, mo, mss, render_manuscripts_html, textindex, works):
-    mo.stop(group.value is None)
-    _urn = works.value[group.value]
-    mo.stop(_urn is None, mo.md("*Choose a work.*"))
-    _entries = manuscripts_for_work(_urn, textindex, mss)
-    mo.stop(
-        not _entries,
-        mo.md(f"No manuscripts with IIIF manifests are recorded for `{_urn}`."),
-    )
-    mo.vstack(
-        [
-            mo.md(
-                f"### {len(_entries)} manuscript{'' if len(_entries) == 1 else 's'} "
-                f"containing `{_urn}`"
-            ),
-            mo.Html(render_manuscripts_html(_entries)),
-        ]
-    )
-    return
+@app.cell
+def _(group, works):
+    workchooser = None
+    if group.value:
+        workchooser = works[group.value]
+    return (workchooser,)
 
 
 if __name__ == "__main__":
