@@ -77,3 +77,27 @@ def build_release(
                 dst.write("\n")
     tmp.replace(out)
     return out
+
+
+def read_blocks(path: Path | str) -> dict[str, list[str]]:
+    """Read a release file into ``{block name: lines}``.
+
+    A block name is the label without its ``#!`` (``version``, ``mss``,
+    ``texts``, ``textindex``). Lines are returned without line endings; for the
+    data blocks the first line is the header.
+
+    :raises BiblissimaError: if the file has data before the first label.
+    """
+    blocks: dict[str, list[str]] = {}
+    current: list[str] | None = None
+    with Path(path).open(encoding="utf-8", newline="") as fh:
+        for line in fh:
+            line = line.rstrip("\n").rstrip("\r")
+            if line.startswith("#!"):
+                current = blocks.setdefault(line[2:].strip(), [])
+            elif current is None:
+                if line.strip():
+                    raise BiblissimaError(f"{path}: data before the first #! label")
+            else:
+                current.append(line)
+    return blocks

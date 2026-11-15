@@ -87,3 +87,5 @@ Files touched: notes/01-data-sources.md, notes/02-plan.md, notes/session-log.md 
 - wrote scratch/guide.md and scratch/reference.md (rebuild guide + method reference).
 - Added `release` (src/biblissima/release.py, CLI `biblissima release`): datareleases/VERSION.cex with #!version/#!mss/#!texts/#!textindex blocks; version from dataversion.txt; refuses overwrite without --force.
 - mss.cex gets 6th column `collection` (portal Manuscript stored_at CorporateBody displayed_title; 334,613/338,731 MSS have it; extra paged query, cached). Flag --no-collections. Wikibase P194 gives same label for Pal.gr.348.
+- Added marimo/survey.py (reads datareleases/current.cex via biblissima.release.read_blocks; polars + altair bar charts: manuscripts per collection, works per text group, rows per "group - work").
+  marimo/polars/altair/pyarrow are now dependencies: optional extra `notebooks` (for pip users) and the `dev` group (plain `uv sync`). uv.lock needs regenerating (`uv lock`). NOT run here (no marimo/polars in my sandbox, no network): untested live.

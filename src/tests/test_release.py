@@ -2,7 +2,7 @@ import tempfile
 from pathlib import Path
 
 from biblissima import BiblissimaError
-from biblissima.release import build_release, read_version
+from biblissima.release import build_release, read_blocks, read_version
 from biblissima.cli import main
 
 import pytest
@@ -63,3 +63,22 @@ def test_cli_release():
         assert rc == 0 and (d / "rel" / "2026a.cex").is_file()
         assert main(["release", "--version-file", str(d / "v.txt"),
                      "--data-dir", str(d / "data"), "--out-dir", str(d / "rel")]) == 1
+
+
+def test_read_blocks_round_trip():
+    with tempfile.TemporaryDirectory() as t:
+        d = _setup(t)
+        out = build_release(d / "v.txt", d / "data", d / "rel")
+        blocks = read_blocks(out)
+        assert list(blocks) == ["version", "mss", "texts", "textindex"]
+        assert blocks["version"] == ["2026a"]
+        assert blocks["mss"] == ["biblissima|label", "m1|x"]
+        assert blocks["textindex"][-1] == "m1|u|1-2"
+
+
+def test_read_blocks_rejects_stray_data():
+    with tempfile.TemporaryDirectory() as t:
+        f = Path(t) / "x.cex"
+        f.write_text("oops\n#!version\n1\n")
+        with pytest.raises(BiblissimaError):
+            read_blocks(f)
