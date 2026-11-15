@@ -1,0 +1,66 @@
+---
+title: "Usage: building the basic datasets"
+---
+
+
+## Configuration
+
+Run these scripts from the repository root. Dependencies are managed with `uv`: configure by running `uv sync`.
+
+The examples below use a variable `UA` for `--user-agent`.  Use your own contact info for this value. Example: `UA='biblissima-py (you@example.org)'`
+
+
+## Collect data about manuscripts
+
+
+This creates `data/mss.cex`.
+
+`uv run biblissima mss --cache-dir .cache/biblissima --user-agent "$UA"`
+
+This generates thousands of throttled requests, and is time consuming. To test it out with a small number of requests, add `--limit N`. 
+
+## Collect data about texts
+
+
+This creates `data/texts.cex`. 
+
+
+(needs the CTS catalogue and the Wikidata author numbers)
+
+
+```bash
+for r in PerseusDL/canonical-greekLit PerseusDL/canonical-latinLit OpenGreekAndLatin/First1KGreek; do
+  d=data/cts-sources/$(basename $r)
+  git clone --depth 1 --filter=blob:none --sparse https://github.com/$r.git $d
+  git -C $d sparse-checkout set --no-cone '**/__cts__.xml'
+done
+curl -sG https://query.wikidata.org/sparql \
+  --data-urlencode 'query=SELECT ?p ?tlg ?phi WHERE { { ?p wdt:P3576 ?tlg } UNION { ?p wdt:P6941 ?phi } }' \
+  -H 'Accept: application/sparql-results+json' -A "$UA" > data/wikidata_tlg_phi.json
+uv run biblissima texts --cache-dir .cache/biblissima --user-agent "$UA" \
+  --cts data/cts-sources/canonical-greekLit data/cts-sources/canonical-latinLit data/cts-sources/First1KGreek \
+  --wikidata data/wikidata_tlg_phi.json
+```
+
+## Index texts to manuscripts
+
+This creates `data/textindex.cex`. Both `data/mss.cex` and `data/texts.cex` must already exist.
+
+`uv run biblissima textindex --cache-dir .cache/biblissima --user-agent "$UA"`
+
+
+## Collect alternate names
+
+
+This creates  `data/groupnames.cex, data/worknames.cex`
+
+`uv run biblissima names --cache-dir .cache/biblissima --user-agent "$UA"`
+
+
+## Package a data release
+
+This uses `data/mss.cex`, `data/texts.cex`, `data/textindex.cex`, `data/groupnames.cex` and `data/worknames.cex` to create `datareleases/<version>.cex` where `<version>` is the value in `dataversion.txt`
+
+`uv run biblissima release`
+
+

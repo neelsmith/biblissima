@@ -1,0 +1,102 @@
+---
+title: "Technical reference: how the data sets are constructed"
+---
+
+
+
+## Where the data comes from
+
+| Source | Used for | How reached |
+|---|---|---|
+| Portail Biblissima (`portail.biblissima.fr/en`), a CubicWeb site | manuscripts, manifests, components, texts, works, authors, folio ranges | public RQL queries: `GET /en/view?rql=...&vid=jsonexport` |
+| Biblissima Wikibase (`data.biblissima.fr/w/api.php`) | rights and credits for manifests | MediaWiki API `wbgetentities`, 50 items per request |
+| CTS catalogues from three GitHub repositories (canonical-greekLit, canonical-latinLit, First1KGreek) | the list of CTS groups and works, with their names | the `__cts__.xml` metadata files, saved locally |
+| Wikidata | linking a Biblissima author to a TLG or PHI author number | one saved SPARQL result |
+
+The portal's data model, as far as this package uses it:
+
+```
+Manuscript --has_part--> Component --related_text--> Text --work--> Work
+Manuscript --manifests--> Manifest --object_uri--> ExternalUri.uri   (the IIIF manifest URL)
+Component.minmax_folios      free-text folio range
+Work --preferred_form / other_forms--> Designation.title
+Contribution: book -> Text, contributor -> Person, role -> Role named "Auteur du texte"
+Person --same_as--> ExternalUri (a Wikidata URL);  Person --preferred_form / other_forms--> Designation
+```
+
+A component can sit inside another component (`Component has_part Component`), never more than two levels.
+
+
+## Records of illustrated manuscripts
+
+
+One row per combination of manuscript + IIIF manifest URL is written to a delimited-text file `data/mss.cex` (>  150,000 rows) in the form:
+
+`biblissima|label|manifest|manifest_license|manifest_credits|collection`
+
+
+
+
+1. **Manifests** (`manifests.py`). Query: manuscript ark, displayed title and manifest URL (`M manifests X, X object_uri E, E uri U`), ordered by manuscript and URL, paged 2,000 at a time. Duplicate (ark, URL) pairs are dropped.
+   * `biblissima` = the manuscript's ark (`ark:/43093/mdata...`).
+   * `label` = the portal's displayed title, with HTML markup removed.
+   * `manifest` = the manifest URL.
+2. **Wikibase item of each manuscript.** A first pass asks the portal for each manuscript's record URL of the form `https://data.biblissima.fr/entity/Q...`, which gives the Wikibase item number (QID).
+3. **Rights** (`rights.py`, `harvest.py`). Manuscript items are fetched from Wikibase in batches of 50. On a manuscript item, each manifest statement (property P196) has a qualifier P191, the *digital library* that provides it. The package follows manuscript item → P196 statement (matched to the manifest URL) → P191 library item, then reads the library's properties:
+   * `manifest_credits` = "Library name (operator)", from the library's label and P200 (operator).
+   * `manifest_license` = the library's licence labels (P187), or, if none, its conditions-of-use URL (P366). Several values are joined with `; `.
+   Rights are therefore per digital library, not per manifest, and only as complete as Biblissima's own data. Where Biblissima records no licence, `manifest_license` is empty (many libraries). This is deliberately Biblissima's data rather than anything inferred from the manifest itself.
+4. **Collection** (`manifests.py`). A separate paged query reads each manuscript's holder, `Manuscript stored_at CorporateBody`, and takes the organisation's displayed title (markup removed), for example `Vatican. Biblioteca apostolica vaticana`. About 99% of manuscripts have one; several holders are joined with `; `; empty when none is recorded. `--no-collections` skips this query.
+5. Progress is reported every 100 records; a summary of how many rows got a licence or credit is printed at the end.
+
+## Records of texts appearing in illustrated manuscripts
+
+
+
+One row per Biblissima *work* that could be matched to a CTS *work* is written to the delimited-text file `data/texts.cex` (> 800 rows) in the form `biblissima|urn|group|work`. Biblissima has no mapping to CTS URNs, so this is a heuristic match, in four stages.
+
+**Key idea.** First find the CTS *group* (author) through an identifier both sides share, then match only titles *within* that group.
+
+1. **CTS catalogue** (`cts.py`). Every `__cts__.xml` is read. A text-group file gives the group URN and its names (by language); a work file gives the work URN and its titles. File URNs lack the trailing colon; the package adds it, so work URNs have five colon-separated parts: `urn:cts:greekLit:tlg0363.tlg001:`. Names are chosen in the order English, Latin, undetermined, Greek, French. Where the same URN appears in several repositories, entries are merged (first seen wins per language). Result: 432 groups, 2,188 works.
+2. **Biblissima works and authors** (`texts.py`).
+   * All works: ark and displayed title (`Author (dates) : Title`), plus every preferred and other form (each a Designation title).
+   * Authors: contributions with role "Auteur du texte" link a Text to a Person; Text → Work gives the work's authors.
+   * Each Person's Wikidata URL gives a Wikidata item (QID).
+3. **Author → CTS group** (`wikidata.py`). The saved Wikidata result lists, for each item, its TLG author ID (property P3576) or PHI Latin Texts author ID (P6941). Numbers are zero-padded to four digits and turned into group URNs: TLG becomes `urn:cts:greekLit:tlg0363:`, PHI becomes `urn:cts:latinLit:phi0690:`. A work is a candidate only if one of its authors maps to a group present in the CTS catalogue. (Property numbers differ between Wikibase sites, so they were checked on Wikidata itself.)
+4. **Title match inside the group.** For each candidate work, every Biblissima name form (the title with its author prefix removed, plus all forms) is compared with every CTS title of every work in the group. Both sides are "folded" first: lowercase, accents removed, punctuation and stopwords dropped. The score is 1.0 for equal strings, otherwise the `difflib` similarity ratio; the best pair counts.
+   * Best score ≥ 0.85: accepted into `texts.cex`.
+   * 0.6 to 0.85: written to `data/texts_review.cex` (with score and label) for a person to judge.
+   * Below 0.6: dropped.
+   * A tie between several CTS works goes to review, never to `texts.cex`.
+   * `biblissima` = the Work's ark (`ark:/43093/oedata...`); `urn` = the CTS work URN; `group` and `work` = the CTS names.
+5. The command stops with an error if no work has an author in a CTS group (this caught a wrong Wikidata property once).
+
+**Limits.** Only classical and patristic Greek and Latin works with a Wikidata author number can match; most medieval or vernacular works get no URN. Two Biblissima works can map to the same CTS work (about 20 do). A work whose only titles differ in language from every CTS title falls into review or is missed; the alternative-name files (`names` command) are meant to help with that.
+
+## Index of texts to illustrated manuscripts
+
+
+
+One row per CTS URN and manuscript (> 10,000 rows) is written to the delimited-text file `textindex.cex` in the form `mss|text|location`.
+.
+
+1. **Links** (`textindex.py`). Two paged queries run, at nesting depth 1 (`M has_part C`) and depth 2 (`M has_part C1, C1 has_part C`). Each returns, for every component that carries a text: manuscript ark, the component's `minmax_folios`, and the ark of the text's Work (`C related_text T, T work W`). Components without a Work-linked text are not seen.
+2. **Filter.** A link is kept only if the manuscript ark is in `mss.cex` and the Work ark is in `texts.cex`. That guarantees both keys exist in the other files. `text` is the CTS URN from `texts.cex`.
+3. **Location of text in the manuscript** is taken from `minmax_folios`, tidied but never reinterpreted:
+   * trailing `*` removed (its meaning in the source is unknown);
+   * `–` and `--` become `-`; a `f.`/`ff.` prefix is dropped (`p.` is kept);
+   * leading zeros dropped (`082-146` → `82-146`);
+   * `32r-v` is written out as `32r-32v`;
+   * folio labels stay strings (`63bisr`); a bare number stays bare (`168-170`), because the source does not say which side of the leaf is meant;
+   * lists and free text (`12-21v, 104-133v`) are only tidied.
+   An empty location means Biblissima records none (about 14% of rows).
+4. **De-duplication.** Rows are unique triples. If a manuscript has the same text once with a location and once without, only the located row is kept. Output is sorted.
+5. A summary prints the counts and the most common location patterns (digits shown as `9`, letters as `a`) so odd formats are easy to spot.
+
+## Lists of alternate names
+
+
+One row is written to the delimited-text files `data/groupnames.cex` and `data/worknames.cex` for each name form matching a group-level or work-level CTS URN, respectively. Both files have the form `urn|name`.
+
+Work names come from the work's title and its preferred/other forms; group names come from the author's preferred/other forms, used only for persons Wikidata maps to that group. Cleaning removes life dates, glued-together forms, translator notes `(trad. ...)` and lowercase `author, title` forms, and omits names equal to the CTS name.
+

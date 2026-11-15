@@ -1,0 +1,45 @@
+project:
+  type: website
+  output-dir: quarto_build
+
+version: "0.1.0"
+metadata:
+  date: today
+  
+execute:
+  freeze: auto
+date: last-modified  
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    toc: true
+
+website:
+  title: "biblissima"
+  page-footer:
+    center: "`biblissima` version **{{< meta version >}}**, website last updated {{< meta date >}}"
+
+  navbar:
+    background: primary
+    search: true
+    left:
+      - text: "Home"
+        file: index.qmd
+      - text: "Usage"
+        file: usage/index.qmd
+      - text: "Reference"
+        file: reference/index.qmd
+            
+          
+
+    right:
+      - icon: person-circle
+        menu:
+          - text: "biblissima on github"
+            href: https://github.com/neelsmith/biblissima
+          - text: "Neel Smith"
+            href: https://neelsmith.github.io/
+        aria-label: Home 

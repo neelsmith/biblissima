@@ -1,3 +1,4 @@
+.DS_Store
 .venv/
 __pycache__/
 __marimo__/
@@ -9,4 +10,5 @@ build/
 src/docs/_build/
 .cache/
 scratch/
+quarto_build/
 
