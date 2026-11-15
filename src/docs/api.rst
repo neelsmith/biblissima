@@ -36,3 +36,6 @@ API reference
 
 .. automodule:: biblissima.release
    :members:
+
+.. automodule:: biblissima.browse
+   :members:

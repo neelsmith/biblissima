@@ -14,6 +14,7 @@ The file is written to ``<out dir>/<version>.cex``.
 
 from __future__ import annotations
 
+import csv
 import re
 import shutil
 from pathlib import Path
@@ -101,3 +102,8 @@ def read_blocks(path: Path | str) -> dict[str, list[str]]:
             else:
                 current.append(line)
     return blocks
+
+
+def parse_block(lines: list[str]) -> list[dict[str, str]]:
+    """Turn the lines of a data block (header first) into a list of row dicts."""
+    return list(csv.DictReader(lines, delimiter="|"))
