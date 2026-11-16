@@ -1,0 +1,100 @@
+[
+  {
+    "objectID": "reference/index.html",
+    "href": "reference/index.html",
+    "title": "Technical reference: how the data sets are constructed",
+    "section": "",
+    "text": "Source\nUsed for\nHow reached\n\n\n\n\nPortail Biblissima (portail.biblissima.fr/en), a CubicWeb site\nmanuscripts, manifests, components, texts, works, authors, folio ranges\npublic RQL queries: GET /en/view?rql=...&vid=jsonexport\n\n\nBiblissima Wikibase (data.biblissima.fr/w/api.php)\nrights and credits for manifests\nMediaWiki API wbgetentities, 50 items per request\n\n\nCTS catalogues from three GitHub repositories (canonical-greekLit, canonical-latinLit, First1KGreek)\nthe list of CTS groups and works, with their names\nthe __cts__.xml metadata files, saved locally\n\n\nWikidata\nlinking a Biblissima author to a TLG or PHI author number\none saved SPARQL result\n\n\n\nThe portal’s data model, as far as this package uses it:\nManuscript --has_part--&gt; Component --related_text--&gt; Text --work--&gt; Work\nManuscript --manifests--&gt; Manifest --object_uri--&gt; ExternalUri.uri   (the IIIF manifest URL)\nComponent.minmax_folios      free-text folio range\nWork --preferred_form / other_forms--&gt; Designation.title\nContribution: book -&gt; Text, contributor -&gt; Person, role -&gt; Role named \"Auteur du texte\"\nPerson --same_as--&gt; ExternalUri (a Wikidata URL);  Person --preferred_form / other_forms--&gt; Designation\nA component can sit inside another component (Component has_part Component), never more than two levels."
+  },
+  {
+    "objectID": "reference/index.html#where-the-data-comes-from",
+    "href": "reference/index.html#where-the-data-comes-from",
+    "title": "Technical reference: how the data sets are constructed",
+    "section": "",
+    "text": "Source\nUsed for\nHow reached\n\n\n\n\nPortail Biblissima (portail.biblissima.fr/en), a CubicWeb site\nmanuscripts, manifests, components, texts, works, authors, folio ranges\npublic RQL queries: GET /en/view?rql=...&vid=jsonexport\n\n\nBiblissima Wikibase (data.biblissima.fr/w/api.php)\nrights and credits for manifests\nMediaWiki API wbgetentities, 50 items per request\n\n\nCTS catalogues from three GitHub repositories (canonical-greekLit, canonical-latinLit, First1KGreek)\nthe list of CTS groups and works, with their names\nthe __cts__.xml metadata files, saved locally\n\n\nWikidata\nlinking a Biblissima author to a TLG or PHI author number\none saved SPARQL result\n\n\n\nThe portal’s data model, as far as this package uses it:\nManuscript --has_part--&gt; Component --related_text--&gt; Text --work--&gt; Work\nManuscript --manifests--&gt; Manifest --object_uri--&gt; ExternalUri.uri   (the IIIF manifest URL)\nComponent.minmax_folios      free-text folio range\nWork --preferred_form / other_forms--&gt; Designation.title\nContribution: book -&gt; Text, contributor -&gt; Person, role -&gt; Role named \"Auteur du texte\"\nPerson --same_as--&gt; ExternalUri (a Wikidata URL);  Person --preferred_form / other_forms--&gt; Designation\nA component can sit inside another component (Component has_part Component), never more than two levels."
+  },
+  {
+    "objectID": "reference/index.html#records-of-illustrated-manuscripts",
+    "href": "reference/index.html#records-of-illustrated-manuscripts",
+    "title": "Technical reference: how the data sets are constructed",
+    "section": "Records of illustrated manuscripts",
+    "text": "Records of illustrated manuscripts\nOne row per combination of manuscript + IIIF manifest URL is written to a delimited-text file data/mss.cex (&gt; 150,000 rows) in the form:\nbiblissima|label|manifest|manifest_license|manifest_credits|collection\n\nManifests (manifests.py). Query: manuscript ark, displayed title and manifest URL (M manifests X, X object_uri E, E uri U), ordered by manuscript and URL, paged 2,000 at a time. Duplicate (ark, URL) pairs are dropped.\n\nbiblissima = the manuscript’s ark (ark:/43093/mdata...).\nlabel = the portal’s displayed title, with HTML markup removed.\nmanifest = the manifest URL.\n\nWikibase item of each manuscript. A first pass asks the portal for each manuscript’s record URL of the form https://data.biblissima.fr/entity/Q..., which gives the Wikibase item number (QID).\nRights (rights.py, harvest.py). Manuscript items are fetched from Wikibase in batches of 50. On a manuscript item, each manifest statement (property P196) has a qualifier P191, the digital library that provides it. The package follows manuscript item → P196 statement (matched to the manifest URL) → P191 library item, then reads the library’s properties:\n\nmanifest_credits = “Library name (operator)”, from the library’s label and P200 (operator).\nmanifest_license = the library’s licence labels (P187), or, if none, its conditions-of-use URL (P366). Several values are joined with ;. Rights are therefore per digital library, not per manifest, and only as complete as Biblissima’s own data. Where Biblissima records no licence, manifest_license is empty (many libraries). This is deliberately Biblissima’s data rather than anything inferred from the manifest itself.\n\nCollection (manifests.py). A separate paged query reads each manuscript’s holder, Manuscript stored_at CorporateBody, and takes the organisation’s displayed title (markup removed), for example Vatican. Biblioteca apostolica vaticana. About 99% of manuscripts have one; several holders are joined with ;; empty when none is recorded. --no-collections skips this query.\nProgress is reported every 100 records; a summary of how many rows got a licence or credit is printed at the end."
+  },
+  {
+    "objectID": "reference/index.html#records-of-texts-appearing-in-illustrated-manuscripts",
+    "href": "reference/index.html#records-of-texts-appearing-in-illustrated-manuscripts",
+    "title": "Technical reference: how the data sets are constructed",
+    "section": "Records of texts appearing in illustrated manuscripts",
+    "text": "Records of texts appearing in illustrated manuscripts\nOne row per Biblissima work that could be matched to a CTS work is written to the delimited-text file data/texts.cex (&gt; 800 rows) in the form biblissima|urn|group|work. Biblissima has no mapping to CTS URNs, so this is a heuristic match, in four stages.\nKey idea. First find the CTS group (author) through an identifier both sides share, then match only titles within that group.\n\nCTS catalogue (cts.py). Every __cts__.xml is read. A text-group file gives the group URN and its names (by language); a work file gives the work URN and its titles. File URNs lack the trailing colon; the package adds it, so work URNs have five colon-separated parts: urn:cts:greekLit:tlg0363.tlg001:. Names are chosen in the order English, Latin, undetermined, Greek, French. Where the same URN appears in several repositories, entries are merged (first seen wins per language). Result: 432 groups, 2,188 works.\nBiblissima works and authors (texts.py).\n\nAll works: ark and displayed title (Author (dates) : Title), plus every preferred and other form (each a Designation title).\nAuthors: contributions with role “Auteur du texte” link a Text to a Person; Text → Work gives the work’s authors.\nEach Person’s Wikidata URL gives a Wikidata item (QID).\n\nAuthor → CTS group (wikidata.py). The saved Wikidata result lists, for each item, its TLG author ID (property P3576) or PHI Latin Texts author ID (P6941). Numbers are zero-padded to four digits and turned into group URNs: TLG becomes urn:cts:greekLit:tlg0363:, PHI becomes urn:cts:latinLit:phi0690:. A work is a candidate only if one of its authors maps to a group present in the CTS catalogue. (Property numbers differ between Wikibase sites, so they were checked on Wikidata itself.)\nTitle match inside the group. For each candidate work, every Biblissima name form (the title with its author prefix removed, plus all forms) is compared with every CTS title of every work in the group. Both sides are “folded” first: lowercase, accents removed, punctuation and stopwords dropped. The score is 1.0 for equal strings, otherwise the difflib similarity ratio; the best pair counts.\n\nBest score ≥ 0.85: accepted into texts.cex.\n0.6 to 0.85: written to data/texts_review.cex (with score and label) for a person to judge.\nBelow 0.6: dropped.\nA tie between several CTS works goes to review, never to texts.cex.\nbiblissima = the Work’s ark (ark:/43093/oedata...); urn = the CTS work URN; group and work = the CTS names.\n\nThe command stops with an error if no work has an author in a CTS group (this caught a wrong Wikidata property once).\n\nLimits. Only classical and patristic Greek and Latin works with a Wikidata author number can match; most medieval or vernacular works get no URN. Two Biblissima works can map to the same CTS work (about 20 do). A work whose only titles differ in language from every CTS title falls into review or is missed; the alternative-name files (names command) are meant to help with that."
+  },
+  {
+    "objectID": "reference/index.html#index-of-texts-to-illustrated-manuscripts",
+    "href": "reference/index.html#index-of-texts-to-illustrated-manuscripts",
+    "title": "Technical reference: how the data sets are constructed",
+    "section": "Index of texts to illustrated manuscripts",
+    "text": "Index of texts to illustrated manuscripts\nOne row per CTS URN and manuscript (&gt; 10,000 rows) is written to the delimited-text file textindex.cex in the form mss|text|location. .\n\nLinks (textindex.py). Two paged queries run, at nesting depth 1 (M has_part C) and depth 2 (M has_part C1, C1 has_part C). Each returns, for every component that carries a text: manuscript ark, the component’s minmax_folios, and the ark of the text’s Work (C related_text T, T work W). Components without a Work-linked text are not seen.\nFilter. A link is kept only if the manuscript ark is in mss.cex and the Work ark is in texts.cex. That guarantees both keys exist in the other files. text is the CTS URN from texts.cex.\nLocation of text in the manuscript is taken from minmax_folios, tidied but never reinterpreted:\n\ntrailing * removed (its meaning in the source is unknown);\n– and -- become -; a f./ff. prefix is dropped (p. is kept);\nleading zeros dropped (082-146 → 82-146);\n32r-v is written out as 32r-32v;\nfolio labels stay strings (63bisr); a bare number stays bare (168-170), because the source does not say which side of the leaf is meant;\nlists and free text (12-21v, 104-133v) are only tidied. An empty location means Biblissima records none (about 14% of rows).\n\nDe-duplication. Rows are unique triples. If a manuscript has the same text once with a location and once without, only the located row is kept. Output is sorted.\nA summary prints the counts and the most common location patterns (digits shown as 9, letters as a) so odd formats are easy to spot."
+  },
+  {
+    "objectID": "reference/index.html#lists-of-alternate-names",
+    "href": "reference/index.html#lists-of-alternate-names",
+    "title": "Technical reference: how the data sets are constructed",
+    "section": "Lists of alternate names",
+    "text": "Lists of alternate names\nOne row is written to the delimited-text files data/groupnames.cex and data/worknames.cex for each name form matching a group-level or work-level CTS URN, respectively. Both files have the form urn|name.\nWork names come from the work’s title and its preferred/other forms; group names come from the author’s preferred/other forms, used only for persons Wikidata maps to that group. Cleaning removes life dates, glued-together forms, translator notes (trad. ...) and lowercase author, title forms, and omits names equal to the CTS name."
+  },
+  {
+    "objectID": "usage/index.html",
+    "href": "usage/index.html",
+    "title": "Usage: building the basic datasets",
+    "section": "",
+    "text": "Run these scripts from the repository root. Dependencies are managed with uv: configure by running uv sync.\nThe examples below use a variable UA for --user-agent. Use your own contact info for this value. Example: UA='biblissima-py (you@example.org)'"
+  },
+  {
+    "objectID": "usage/index.html#configuration",
+    "href": "usage/index.html#configuration",
+    "title": "Usage: building the basic datasets",
+    "section": "",
+    "text": "Run these scripts from the repository root. Dependencies are managed with uv: configure by running uv sync.\nThe examples below use a variable UA for --user-agent. Use your own contact info for this value. Example: UA='biblissima-py (you@example.org)'"
+  },
+  {
+    "objectID": "usage/index.html#collect-data-about-manuscripts",
+    "href": "usage/index.html#collect-data-about-manuscripts",
+    "title": "Usage: building the basic datasets",
+    "section": "Collect data about manuscripts",
+    "text": "Collect data about manuscripts\nThis creates data/mss.cex.\nuv run biblissima mss --cache-dir .cache/biblissima --user-agent \"$UA\"\nThis generates thousands of throttled requests, and is time consuming. To test it out with a small number of requests, add --limit N."
+  },
+  {
+    "objectID": "usage/index.html#collect-data-about-texts",
+    "href": "usage/index.html#collect-data-about-texts",
+    "title": "Usage: building the basic datasets",
+    "section": "Collect data about texts",
+    "text": "Collect data about texts\nThis creates data/texts.cex.\n(needs the CTS catalogue and the Wikidata author numbers)\nfor r in PerseusDL/canonical-greekLit PerseusDL/canonical-latinLit OpenGreekAndLatin/First1KGreek; do\n  d=data/cts-sources/$(basename $r)\n  git clone --depth 1 --filter=blob:none --sparse https://github.com/$r.git $d\n  git -C $d sparse-checkout set --no-cone '**/__cts__.xml'\ndone\ncurl -sG https://query.wikidata.org/sparql \\\n  --data-urlencode 'query=SELECT ?p ?tlg ?phi WHERE { { ?p wdt:P3576 ?tlg } UNION { ?p wdt:P6941 ?phi } }' \\\n  -H 'Accept: application/sparql-results+json' -A \"$UA\" &gt; data/wikidata_tlg_phi.json\nuv run biblissima texts --cache-dir .cache/biblissima --user-agent \"$UA\" \\\n  --cts data/cts-sources/canonical-greekLit data/cts-sources/canonical-latinLit data/cts-sources/First1KGreek \\\n  --wikidata data/wikidata_tlg_phi.json"
+  },
+  {
+    "objectID": "usage/index.html#index-texts-to-manuscripts",
+    "href": "usage/index.html#index-texts-to-manuscripts",
+    "title": "Usage: building the basic datasets",
+    "section": "Index texts to manuscripts",
+    "text": "Index texts to manuscripts\nThis creates data/textindex.cex. Both data/mss.cex and data/texts.cex must already exist.\nuv run biblissima textindex --cache-dir .cache/biblissima --user-agent \"$UA\""
+  },
+  {
+    "objectID": "usage/index.html#collect-alternate-names",
+    "href": "usage/index.html#collect-alternate-names",
+    "title": "Usage: building the basic datasets",
+    "section": "Collect alternate names",
+    "text": "Collect alternate names\nThis creates data/groupnames.cex, data/worknames.cex\nuv run biblissima names --cache-dir .cache/biblissima --user-agent \"$UA\""
+  },
+  {
+    "objectID": "usage/index.html#package-a-data-release",
+    "href": "usage/index.html#package-a-data-release",
+    "title": "Usage: building the basic datasets",
+    "section": "Package a data release",
+    "text": "Package a data release\nThis uses data/mss.cex, data/texts.cex, data/textindex.cex, data/groupnames.cex and data/worknames.cex to create datareleases/&lt;version&gt;.cex where &lt;version&gt; is the value in dataversion.txt\nuv run biblissima release"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "biblissima",
+    "section": "",
+    "text": "biblissima is a Python package for working with data from the invaluable portal at https://portail.biblissima.fr. Its focus is on illustrated manuscripts documented with IIIF manifests. Its main goals are:\n\nextract a relevant subset of information from the Biblissima porta and make it available in delimited-text files\nadd CTS URN identifiers for all texts\nadd CITE2 URN identifiers for manuscript pages\n\nMore information:\n\nusage: summary of commands to (re)build the data sets\ntechnical reference: detailed documentation of how the data sets are constructed from queries to the portal"
+  }
+]

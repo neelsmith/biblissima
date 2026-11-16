@@ -2,4 +2,16 @@
 title: "`biblissima`"
 ---
 
-Home page
+`biblissima` is a Python package for working with data from the 
+invaluable portal at [https://portail.biblissima.fr](https://portail.biblissima.fr). Its focus is on illustrated manuscripts documented with IIIF manifests. Its main goals are:
+
+- extract a relevant subset of information from the Biblissima porta and make it available in delimited-text files
+- add CTS URN identifiers for all texts
+- add CITE2 URN identifiers for manuscript pages
+
+
+
+More information:
+
+- [usage](./usage/): summary of commands to (re)build the data sets
+- [technical reference](./reference/): detailed documentation of how the data sets are constructed from queries to the portal

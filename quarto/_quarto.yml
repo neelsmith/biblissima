@@ -32,6 +32,8 @@ website:
         file: usage/index.qmd
       - text: "Reference"
         file: reference/index.qmd
+      - text: "API docs"
+        url: https://neelsmith.github.io/biblissima/api/
             
           
 
