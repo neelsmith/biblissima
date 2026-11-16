@@ -2,4 +2,4 @@
 
 Current data release: **2026a**
 
-**2026a**, *??*: TBA
+**2026a**, *Nov. 16*: Initial data release.
