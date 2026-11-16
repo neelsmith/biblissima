@@ -12,3 +12,4 @@ src/docs/_build/
 scratch/
 quarto_build/
 
+data/cts-sources/
