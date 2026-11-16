@@ -27,6 +27,15 @@ def viewer_url(manifest: str) -> str:
     return VIEWER + quote(manifest.strip(), safe=_URL_SAFE)
 
 
+#: Base of the portal's manuscript pages; the manuscript's ark follows.
+PORTAL = "https://portail.biblissima.fr/"
+
+
+def portal_url(ark: str) -> str:
+    """Link to a manuscript's page on the Biblissima portal."""
+    return PORTAL + quote(ark.strip(), safe=_URL_SAFE)
+
+
 def manuscript_counts(textindex: list[dict[str, str]]) -> dict[str, int]:
     """``{work URN: number of distinct manuscripts}`` from the text index."""
     found: dict[str, set[str]] = {}
@@ -120,13 +129,19 @@ _BUTTON_STYLE = (
 def render_manuscripts_html(entries: list[dict]) -> str:
     """An HTML list of manuscripts.
 
-    Each item has the label in bold, then a second line with the collection and
-    location, then a button-style link for each manifest.
+    Each item has the label in bold, then a line with the collection and
+    location, then (if the entry has ``works``, a list of ``(name, locations)``)
+    one line per work, then button-style links: one to the manuscript's Biblissima
+    portal page and one for each manifest.
     """
     esc = html.escape
     items = []
     for e in entries:
         many = len(e["manifests"]) > 1
+        portal_link = (
+            f'<a href="{esc(portal_url(e["ark"]), quote=True)}" target="_blank" '
+            f'rel="noopener" style="{_BUTTON_STYLE}">View Biblissima &#9656;</a>'
+        )
         links = "".join(
             f'<a href="{esc(viewer_url(m), quote=True)}" target="_blank" '
             f'rel="noopener" style="{_BUTTON_STYLE}">'
@@ -134,11 +149,146 @@ def render_manuscripts_html(entries: list[dict]) -> str:
             for i, m in enumerate(e["manifests"], 1)
         )
         details = [esc(e["collection"])] if e["collection"] else []
-        if e["locations"]:
+        if e.get("locations"):
             details.append("location: " + esc("; ".join(e["locations"])))
         meta = f"<div>{' &middot; '.join(details)}</div>" if details else ""
+        for name, locs in e.get("works", ()):
+            where = f" &mdash; {esc('; '.join(locs))}" if locs else ""
+            meta += f"<div>{esc(name)}{where}</div>"
         items.append(
             f"<li style=\"margin-bottom:0.8em\"><strong>{esc(e['label'])}</strong>"
-            f"{meta}<div>{links}</div></li>"
+            f"{meta}<div>{portal_link}{links}</div></li>"
         )
     return "<ul>" + "".join(items) + "</ul>"
+
+
+# -- browsing by collection ---------------------------------------------------
+
+#: Collection name used for manuscripts whose holder is not recorded.
+NO_COLLECTION = "(none recorded)"
+
+#: Menu value meaning "every work in the collection".
+ALL = "*all*"
+
+
+def manuscript_collections(mss: list[dict[str, str]]) -> dict[str, str]:
+    """``{manuscript ark: collection}``; a blank collection becomes :data:`NO_COLLECTION`."""
+    found: dict[str, str] = {}
+    for row in mss:
+        found.setdefault(row["biblissima"], row.get("collection", "") or NO_COLLECTION)
+    return found
+
+
+def text_names(texts: list[dict[str, str]]) -> dict[str, str]:
+    """``{work URN: "group - work"}``."""
+    names: dict[str, str] = {}
+    for row in texts:
+        names.setdefault(row["urn"], f"{row['group']} - {row['work']}")
+    return names
+
+
+def _plural(n: int, one: str, many: str) -> str:
+    return f"{n} {one if n == 1 else many}"
+
+
+def collection_options(
+    textindex: list[dict[str, str]], holders: dict[str, str]
+) -> dict[str, str]:
+    """Menu of collections that hold manuscripts with indexed texts.
+
+    ``{label: collection}``, alphabetical; labels show the manuscript count.
+    """
+    arks: dict[str, set[str]] = {}
+    for row in textindex:
+        collection = holders.get(row["mss"])
+        if collection is not None:
+            arks.setdefault(collection, set()).add(row["mss"])
+    return {
+        f"{name} ({_plural(len(found), 'MS', 'MSS')})": name
+        for name, found in sorted(arks.items(), key=lambda kv: kv[0].casefold())
+    }
+
+
+def collection_work_options(
+    collection: str,
+    textindex: list[dict[str, str]],
+    texts: list[dict[str, str]],
+    holders: dict[str, str],
+) -> dict[str, str]:
+    """Menu of the works found in a collection: ``{label: work URN}``.
+
+    The first entry, ``All``, has the value :data:`ALL`. Other labels are
+    ``group - work (N MSS)``, alphabetical.
+    """
+    names = text_names(texts)
+    per_work: dict[str, set[str]] = {}
+    for row in textindex:
+        if holders.get(row["mss"]) == collection:
+            per_work.setdefault(row["text"], set()).add(row["mss"])
+    all_arks = set().union(*per_work.values()) if per_work else set()
+    options = {
+        f"All ({_plural(len(per_work), 'work', 'works')} in "
+        f"{_plural(len(all_arks), 'manuscript', 'manuscripts')})": ALL
+    }
+    for urn, found in sorted(
+        per_work.items(), key=lambda kv: (names.get(kv[0], kv[0]).casefold(), kv[0])
+    ):
+        label = f"{names.get(urn, urn)} ({_plural(len(found), 'MS', 'MSS')})"
+        if label in options:
+            label = f"{label} [{urn}]"
+        options[label] = urn
+    return options
+
+
+def entries_for_collection(
+    collection: str,
+    selection: str,
+    textindex: list[dict[str, str]],
+    texts: list[dict[str, str]],
+    mss: list[dict[str, str]],
+) -> list[dict]:
+    """Manuscripts of a collection with one work, or with every work (:data:`ALL`).
+
+    Each entry has ``ark``, ``label``, ``manifests`` and an empty ``collection``
+    (the collection is already known in this view). For one work it has
+    ``locations``; for ``ALL`` it has ``works``, a sorted list of
+    ``("group - work", [locations])``. Sorted by label.
+    """
+    holders = manuscript_collections(mss)
+    names = text_names(texts)
+    found: dict[str, dict[str, list[str]]] = {}
+    for row in textindex:
+        ark = row["mss"]
+        if holders.get(ark) != collection:
+            continue
+        if selection != ALL and row["text"] != selection:
+            continue
+        locs = found.setdefault(ark, {}).setdefault(row["text"], [])
+        if row["location"] and row["location"] not in locs:
+            locs.append(row["location"])
+    entries: dict[str, dict] = {}
+    for row in mss:
+        ark = row["biblissima"]
+        if ark not in found:
+            continue
+        entry = entries.get(ark)
+        if entry is None:
+            per_work = found[ark]
+            entry = {
+                "ark": ark,
+                "label": row["label"],
+                "collection": "",
+                "manifests": [],
+            }
+            if selection == ALL:
+                entry["works"] = sorted(
+                    ((names.get(u, u), locs) for u, locs in per_work.items()),
+                    key=lambda w: w[0].casefold(),
+                )
+            else:
+                entry["locations"] = per_work[selection]
+            entries[ark] = entry
+        url = row["manifest"].strip()
+        if url and url not in entry["manifests"]:
+            entry["manifests"].append(url)
+    return sorted(entries.values(), key=lambda e: e["label"].casefold())

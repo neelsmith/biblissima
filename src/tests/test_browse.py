@@ -1,5 +1,12 @@
 from biblissima.browse import (
+    ALL,
+    NO_COLLECTION,
     VIEWER,
+    portal_url,
+    collection_options,
+    collection_work_options,
+    entries_for_collection,
+    manuscript_collections,
     group_options,
     manuscript_counts,
     manuscripts_for_work,
@@ -74,3 +81,52 @@ def test_render_html_escapes_and_links():
     assert "background:#1a5fb4" in out
     assert "location: 1-9; 20-30" in out
     assert "http://b/1%20x.json" in out
+
+
+def test_collection_menus():
+    holders = manuscript_collections(MSS)
+    assert holders == {"m1": "BnF", "m2": NO_COLLECTION}
+    # m3 has no mss row, so it has no collection and is left out
+    assert collection_options(INDEX, holders) == {
+        "(none recorded) (1 MS)": NO_COLLECTION,
+        "BnF (1 MS)": "BnF",
+    }
+    opts = collection_work_options("BnF", INDEX, TEXTS, holders)
+    assert list(opts.items()) == [
+        ("All (1 work in 1 manuscript)", ALL),
+        ("Ptolemy - Syntaxis (1 MS)", "urn:cts:greekLit:tlg0363.tlg001:"),
+    ]
+    opts2 = collection_work_options(NO_COLLECTION, INDEX, TEXTS, holders)
+    assert opts2["All (2 works in 1 manuscript)"] == ALL
+    assert collection_work_options("Nowhere", INDEX, TEXTS, holders) == {
+        "All (0 works in 0 manuscripts)": ALL
+    }
+
+
+def test_entries_for_collection():
+    one = entries_for_collection("BnF", "urn:cts:greekLit:tlg0363.tlg001:", INDEX, TEXTS, MSS)
+    assert len(one) == 1 and one[0]["locations"] == ["1-9", "20-30"]
+    assert one[0]["collection"] == "" and "works" not in one[0]
+    assert one[0]["manifests"] == ["http://a/1.json", "http://b/1 x.json"]
+    allw = entries_for_collection(NO_COLLECTION, ALL, INDEX, TEXTS, MSS)
+    assert allw[0]["works"] == [
+        ("Ptolemy - Syntaxis", []),
+        ("Ptolemy - Tetrabiblos", ["7"]),
+    ]
+    assert entries_for_collection("BnF", "urn:cts:greekLit:tlg0363.tlg007:", INDEX, TEXTS, MSS) == []
+
+
+def test_render_per_work_lines():
+    allw = entries_for_collection(NO_COLLECTION, ALL, INDEX, TEXTS, MSS)
+    out = render_manuscripts_html(allw)
+    assert "<div>Ptolemy - Tetrabiblos &mdash; 7</div>" in out
+    assert "<div>Ptolemy - Syntaxis</div>" in out
+
+
+def test_portal_link():
+    assert portal_url("ark:/43093/mdata09ab") == "https://portail.biblissima.fr/ark:/43093/mdata09ab"
+    entries = [{"ark": "ark:/1", "label": "A", "collection": "", "locations": [], "manifests": []}]
+    out = render_manuscripts_html(entries)
+    assert "<strong>A</strong>" in out and "</a><strong>" not in out
+    assert 'href="https://portail.biblissima.fr/ark:/1"' in out
+    assert "View Biblissima &#9656;</a>" in out and "background:#1a5fb4" in out
