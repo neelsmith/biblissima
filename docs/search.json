@@ -42,6 +42,13 @@
     "text": "Lists of alternate names\nOne row is written to the delimited-text files data/groupnames.cex and data/worknames.cex for each name form matching a group-level or work-level CTS URN, respectively. Both files have the form urn|name.\nWork names come from the work’s title and its preferred/other forms; group names come from the author’s preferred/other forms, used only for persons Wikidata maps to that group. Cleaning removes life dates, glued-together forms, translator notes (trad. ...) and lowercase author, title forms, and omits names equal to the CTS name."
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "biblissima",
+    "section": "",
+    "text": "biblissima is a Python package for working with data from the invaluable portal at https://portail.biblissima.fr. Its focus is on illustrated manuscripts documented with IIIF manifests. Its main goals are:\n\nextract a relevant subset of information from the Biblissima porta and make it available in delimited-text files\nadd CTS URN identifiers for all texts\nadd CITE2 URN identifiers for manuscript pages\n\nMore information:\n\nusage: summary of commands to (re)build the data sets\ntechnical reference: detailed documentation of how the data sets are constructed from queries to the portal"
+  },
+  {
     "objectID": "usage/index.html",
     "href": "usage/index.html",
     "title": "Usage: building the basic datasets",
@@ -91,10 +98,10 @@
     "text": "Package a data release\nThis uses data/mss.cex, data/texts.cex, data/textindex.cex, data/groupnames.cex and data/worknames.cex to create datareleases/&lt;version&gt;.cex where &lt;version&gt; is the value in dataversion.txt\nuv run biblissima release"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "biblissima",
+    "objectID": "notebooks/index.html",
+    "href": "notebooks/index.html",
+    "title": "Reactive notebooks",
     "section": "",
-    "text": "biblissima is a Python package for working with data from the invaluable portal at https://portail.biblissima.fr. Its focus is on illustrated manuscripts documented with IIIF manifests. Its main goals are:\n\nextract a relevant subset of information from the Biblissima porta and make it available in delimited-text files\nadd CTS URN identifiers for all texts\nadd CITE2 URN identifiers for manuscript pages\n\nMore information:\n\nusage: summary of commands to (re)build the data sets\ntechnical reference: detailed documentation of how the data sets are constructed from queries to the portal"
+    "text": "The biblissima repository includes marimo notebooks to explore the data gathered using the biblissima package.\n\nmarimo/browsetexts.py: browse text groups and works to find illustrated manuscripts containing those works.\nmarimo/browsecollections.py: browse collections of manuscripts to find texts in those collections, and illustrated manuscripts containing those texts.\n\nFor each illustrated manuscript, the notebooks provide links to:\n\nfull record on the Biblissima portal\nan image viewer for viewing and citing the published images"
   }
 ]

@@ -1,0 +1,14 @@
+---
+title: Reactive notebooks
+---
+
+
+The `biblissima` repository includes marimo notebooks to explore the data gathered using the `biblissima` package.
+
+- `marimo/browsetexts.py`: browse text groups and works to find illustrated manuscripts containing those works.
+- `marimo/browsecollections.py`: browse collections of manuscripts to find texts in those collections, and illustrated manuscripts containing those texts.
+
+For each illustrated manuscript, the notebooks provide links to:
+
+- full record on the Biblissima portal
+- an image viewer for viewing and citing the published images

@@ -23,7 +23,7 @@ def _(mo):
     return
 
 
-@app.cell(hide_code=True)
+@app.cell
 def _(group, mo, workchooser):
     mo.hstack([group ,workchooser], justify="center")
     return
@@ -148,7 +148,6 @@ def _(group_options, mo, texts, version):
         label=f"Text group (release {version})",
         full_width=True,
     )
-
     return (group,)
 
 
