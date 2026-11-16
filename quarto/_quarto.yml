@@ -28,6 +28,8 @@ website:
     left:
       - text: "Home"
         file: index.qmd
+      - text: "Notebooks"
+        file: notebooks/index.qmd
       - text: "Usage"
         file: usage/index.qmd
       - text: "Reference"
