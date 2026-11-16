@@ -10,3 +10,8 @@ invaluable portal at [https://portail.biblissima.fr](https://portail.biblissima.
 - add CTS URN identifiers for all texts
 - add CITE2 URN identifiers for manuscript pages
 
+## Marimo notebooks
+
+The repository also includes marimo notebooks for working with the extracted data:
+
+![](./browser.png)
