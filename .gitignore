@@ -11,5 +11,4 @@ src/docs/_build/
 .cache/
 scratch/
 quarto_build/
-
 data/cts-sources/
